@@ -1,4 +1,4 @@
-git checkout --orphan gh-pages
+git checkout gh-pages
 git rm -rf .
 
 # create a hidden file .nojekyll
