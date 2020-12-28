@@ -1,0 +1,20 @@
+--- 
+title: "Selected Topics In Data Science"
+author: "Bruce Campbell"
+date: "`r Sys.Date()`"
+output: pdf_document
+documentclass: book
+bibliography:
+- book.bib
+- packages.bib
+biblio-style: apalike
+github-repo: "brucebcampbell/stds"
+link-citations: yes
+description: This work is a series of topics the author found interesting and decided
+  to write about.
+site: bookdown::bookdown_site
+---
+
+# Preface 
+
+This is the first installment on my promise to elucidate less popular topics in statistics and machine learning. I wrote this as a way to solidify my understanding of some of the topics that are treated here. Hopefully others will find value here. 
