@@ -3,8 +3,10 @@
 \PassOptionsToPackage{hyphens}{url}
 %
 \documentclass[
+  11pt,
 ]{book}
 \usepackage{lmodern}
+\usepackage{setspace}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
@@ -41,6 +43,46 @@
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -69,7 +111,7 @@
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
 \usepackage[]{natbib}
-\bibliographystyle{apalike}
+\bibliographystyle{plainnat}
 
 \title{Selected Topics In Data Science}
 \author{Bruce Campbell}
@@ -78,10 +120,7 @@
 \begin{document}
 \maketitle
 
-{
-\setcounter{tocdepth}{1}
-\tableofcontents
-}
+\setstretch{1.2}
 \hypertarget{preface}{%
 \chapter{Preface}\label{preface}}
 
@@ -104,12 +143,450 @@ If we are averaging models \(i=1, \cdots ,k\) then
 \hypertarget{sensitivity-analysis-and-shapley-values}{%
 \chapter{Sensitivity Analysis and Shapley Values}\label{sensitivity-analysis-and-shapley-values}}
 
-Global sensitivity analysis measures the importance of input variables to a function. This is an important task in quantifying the uncertainty in which target variables can be predicted from their inputs. Sobol indices are a popular approach to this. It turns out that there's a relationship between Sobol indices and Shapley values. We explore this relationship here and demonstrate their effectiveness on some linear and non-linear models.
+Global sensitivity analysis measures the importance of input variables to a function. This is an important task in quantifying the uncertainty in which target variables can be predicted from their inputs. Sobol indices \citep{sobolindices} are a popular approach to this. It turns out that there's a relationship between Sobol indices and Shapley values. We explore this relationship here and demonstrate their effectiveness on some linear and non-linear models.
 
 \hypertarget{relationship-between-sobol-indices-and-shapley-values}{%
 \section{Relationship between Sobol indices and Shapley values}\label{relationship-between-sobol-indices-and-shapley-values}}
 
 Shapley values are based on \(f(x)-E[f(x)]\) while Sobol indices decompose output variance into fractions contributed by the inputs. The Sobol index is a global measure of feature importance while Shapley values focus on local explanations although we could combine local Shapley values to achieve a global importance measure. Sobol indices are based on expectations and can be used for features not included in the model / function of interest. In this way we could query for important features correlated with those that the model does use.
+
+\hypertarget{cran-sensitivity-package}{%
+\section{CRAN sensitivity package}\label{cran-sensitivity-package}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{library}\NormalTok{(pander)}
+\ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(sensitivity))\{}
+    \KeywordTok{install.packages}\NormalTok{(}\StringTok{"sensitivity"}\NormalTok{)}
+    \KeywordTok{library}\NormalTok{(sensitivity)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Standardized Regression Coefficients (SRC), or the Standardized Rank Regression Coefficients (SRRC), which are sensitivity indices based on linear or monotonic assumptions in the case of independent factors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n <-}\StringTok{ }\DecValTok{100}
+\NormalTok{X <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{X1 =} \KeywordTok{runif}\NormalTok{(n, }\FloatTok{0.5}\NormalTok{, }\FloatTok{1.5}\NormalTok{),}
+                \DataTypeTok{X2 =} \KeywordTok{runif}\NormalTok{(n, }\FloatTok{1.5}\NormalTok{, }\FloatTok{4.5}\NormalTok{),}
+                \DataTypeTok{X3 =} \KeywordTok{runif}\NormalTok{(n, }\FloatTok{4.5}\NormalTok{, }\FloatTok{13.5}\NormalTok{))}
+
+\CommentTok{# linear model : Y = X1 + X2 + X3}
+
+\NormalTok{y <-}\StringTok{ }\KeywordTok{with}\NormalTok{(X, X1 }\OperatorTok{+}\StringTok{ }\NormalTok{X2 }\OperatorTok{+}\StringTok{ }\NormalTok{X3)}
+
+
+\NormalTok{Z <-}\StringTok{ }\KeywordTok{src}\NormalTok{(X, y, }\DataTypeTok{rank =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{logistic =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{nboot =} \DecValTok{0}\NormalTok{, }\DataTypeTok{conf =} \FloatTok{0.95}\NormalTok{)}
+
+\KeywordTok{pander}\NormalTok{(Z}\OperatorTok{$}\NormalTok{SRC,}\DataTypeTok{caption =} \StringTok{"Standardized Regression Coefficients "}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}cc@{}}
+\caption{Standardized Regression Coefficients}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.12\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
+original\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.12\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
+original\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.12\columnwidth}\centering
+\textbf{X1}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.101\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\centering
+\textbf{X2}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.3301\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\centering
+\textbf{X3}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.9283\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(Z, }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Standardized Regression Coefficients"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{topics_in_data_science_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y <-}\StringTok{ }\KeywordTok{with}\NormalTok{(X, X1 }\OperatorTok{+}\StringTok{ }\NormalTok{X2 }\OperatorTok{+}\StringTok{ }\NormalTok{X3)}
+\NormalTok{y <-}\StringTok{ }\NormalTok{y }\OperatorTok{+}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\KeywordTok{nrow}\NormalTok{(X),}\DecValTok{0}\NormalTok{,}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{)}
+\NormalTok{df<-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(X,y))}
+
+\NormalTok{Z <-}\StringTok{ }\KeywordTok{src}\NormalTok{(X, y, }\DataTypeTok{rank =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{logistic =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{nboot =} \DecValTok{0}\NormalTok{, }\DataTypeTok{conf =} \FloatTok{0.95}\NormalTok{)}
+
+\KeywordTok{pander}\NormalTok{(Z}\OperatorTok{$}\NormalTok{SRC,}\DataTypeTok{caption =} \StringTok{"Standardized Regression Coefficients "}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}cc@{}}
+\caption{Standardized Regression Coefficients}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.12\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
+original\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.12\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
+original\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.12\columnwidth}\centering
+\textbf{X1}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.1165\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\centering
+\textbf{X2}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.3171\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\centering
+\textbf{X3}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.9099\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(Z, }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Standardized Regression Coefficients"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{topics_in_data_science_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#lm.fit = lm(y ~ X1+X2+X3,data = df)}
+\CommentTok{#summary(lm.fit)}
+\CommentTok{#attach(df)}
+\CommentTok{#plot(y, X1+X2+X3)}
+\end{Highlighting}
+\end{Shaded}
+
+We see how the importance of X3 is ranked above X2 and likewise X2 is more important than X1. This is by design of the simulated data set. The standardized regression coefficients (beta coefficients) are calculated from that has been standardized, let's normalize and calculate the regression to see if indeed that is the case.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dfs<-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{scale}\NormalTok{(df,}\DataTypeTok{center =} \OtherTok{TRUE}\NormalTok{,}\DataTypeTok{scale =} \OtherTok{TRUE}\NormalTok{))}
+\NormalTok{lm.fit =}\StringTok{ }\KeywordTok{lm}\NormalTok{(y }\OperatorTok{~}\StringTok{ }\NormalTok{X1}\OperatorTok{+}\NormalTok{X2}\OperatorTok{+}\NormalTok{X3,}\DataTypeTok{data =}\NormalTok{ dfs)}
+\KeywordTok{summary}\NormalTok{(lm.fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = y ~ X1 + X2 + X3, data = dfs)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.62741 -0.10185  0.01695  0.14604  0.38982 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 4.264e-16  1.936e-02   0.000        1    
+## X1          1.165e-01  1.986e-02   5.863 6.42e-08 ***
+## X2          3.171e-01  1.985e-02  15.976  < 2e-16 ***
+## X3          9.099e-01  1.947e-02  46.735  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1936 on 96 degrees of freedom
+## Multiple R-squared:  0.9637, Adjusted R-squared:  0.9625 
+## F-statistic: 848.7 on 3 and 96 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+We see that the values are very close.
+
+\hypertarget{partial-correlation-coefficients}{%
+\section{Partial Correlation Coefficients}\label{partial-correlation-coefficients}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{pcc}\NormalTok{(X, y, }\DataTypeTok{nboot =} \DecValTok{100}\NormalTok{)}
+\KeywordTok{print}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## pcc(X = X, y = y, nboot = 100)
+## 
+## Partial Correlation Coefficients (PCC):
+##     original          bias  std. error min. c.i. max. c.i.
+## X1 0.5134715  5.023519e-04 0.066248670 0.4157600 0.6870635
+## X2 0.8524548 -3.249625e-06 0.021846339 0.8139257 0.9052334
+## X3 0.9787221 -3.341981e-05 0.003358137 0.9730419 0.9856168
+\end{verbatim}
+
+\hypertarget{sobol-indices-for-deterministic-function-and-for-model}{%
+\section{Sobol indices for deterministic function and for model}\label{sobol-indices-for-deterministic-function-and-for-model}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y.fun <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(X) \{}
+  
+\NormalTok{  X1<-}\StringTok{ }\NormalTok{X[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{  X2<-}\StringTok{ }\NormalTok{X[,}\DecValTok{2}\NormalTok{]}
+\NormalTok{  X3<-}\StringTok{ }\NormalTok{X[,}\DecValTok{3}\NormalTok{]}
+  
+\NormalTok{  X1}\OperatorTok{+}\NormalTok{X2}\OperatorTok{+}\NormalTok{X3}
+\NormalTok{\}}
+
+\NormalTok{yhat.fun<-}\ControlFlowTok{function}\NormalTok{(X,lm)}
+\NormalTok{\{}
+\NormalTok{  X1<-}\StringTok{ }\NormalTok{X[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{  X2<-}\StringTok{ }\NormalTok{X[,}\DecValTok{2}\NormalTok{]}
+\NormalTok{  X3<-}\StringTok{ }\NormalTok{X[,}\DecValTok{3}\NormalTok{]}
+  
+\NormalTok{  yhat <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(lm.fit,}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{X1=}\NormalTok{X1,}\DataTypeTok{X2=}\NormalTok{X2,}\DataTypeTok{X3=}\NormalTok{X3))}
+  \KeywordTok{return}\NormalTok{(yhat)}
+\NormalTok{\}}
+
+\NormalTok{nboot =}\StringTok{ }\DecValTok{100}
+
+\NormalTok{x <-}\StringTok{ }\KeywordTok{sobol}\NormalTok{(}\DataTypeTok{model =}\NormalTok{ y.fun, X[}\DecValTok{1}\OperatorTok{:}\DecValTok{50}\NormalTok{,], X[}\DecValTok{51}\OperatorTok{:}\DecValTok{100}\NormalTok{,], }\DataTypeTok{order =} \DecValTok{2}\NormalTok{, }\DataTypeTok{nboot =}\NormalTok{ nboot)}
+\NormalTok{S.sobol <-}\StringTok{ }\NormalTok{x}\OperatorTok{$}\NormalTok{S}
+\KeywordTok{pander}\NormalTok{(S.sobol)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}cccccc@{}}
+\toprule
+\begin{minipage}[b]{0.14\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+original\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+bias\strut
+\end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\centering
+std. error\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
+min. c.i.\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
+max. c.i.\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.14\columnwidth}\centering
+\textbf{X1}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.01409\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-0.03702\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.8124\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+-1.581\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+2.173\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\centering
+\textbf{X2}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-0.1993\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-0.05273\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.818\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+-1.678\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+1.794\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\centering
+\textbf{X3}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+1.63\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.05383\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.3927\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.8466\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+2.476\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\centering
+**X1*X2**\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.014\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.02349\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.7954\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+-2.086\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+1.583\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\centering
+**X1*X3**\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.014\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.02349\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.7954\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+-2.086\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+1.583\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\centering
+**X2*X3**\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.014\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.02349\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.7954\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+-2.086\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+1.583\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#yhat.fun(data.frame(X1=1,X2=2,X3=3),lm.fit)}
+
+\NormalTok{x <-}\StringTok{ }\KeywordTok{sobol}\NormalTok{(}\DataTypeTok{model =}\NormalTok{ yhat.fun,X[}\DecValTok{1}\OperatorTok{:}\DecValTok{50}\NormalTok{,], X[}\DecValTok{51}\OperatorTok{:}\DecValTok{100}\NormalTok{,], }\DataTypeTok{order =} \DecValTok{2}\NormalTok{, }\DataTypeTok{nboot =}\NormalTok{ nboot)}
+\NormalTok{S.sobol <-}\StringTok{ }\NormalTok{x}\OperatorTok{$}\NormalTok{S}
+\KeywordTok{pander}\NormalTok{(S.sobol)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}cccccc@{}}
+\toprule
+\begin{minipage}[b]{0.14\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+original\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+bias\strut
+\end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\centering
+std. error\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
+min. c.i.\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
+max. c.i.\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.14\columnwidth}\centering
+\textbf{X1}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-0.2086\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-0.03056\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.7721\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+-1.751\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+1.523\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\centering
+\textbf{X2}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-0.2831\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-0.06508\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.7892\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+-1.766\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+1.478\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\centering
+\textbf{X3}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+1.383\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.04754\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.1276\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+1.005\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+1.557\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\centering
+**X1*X2**\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.2113\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.03101\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.7722\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+-1.516\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+1.746\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\centering
+**X1*X3**\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.2113\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.03101\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.7722\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+-1.516\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+1.746\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\centering
+**X2*X3**\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.2113\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.03101\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.7722\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+-1.516\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+1.746\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
 
 \hypertarget{applications}{%
 \chapter{Applications}\label{applications}}
@@ -127,6 +604,6 @@ Some \emph{significant} applications are demonstrated in this chapter.
 
 We have finished a nice book.
 
-  \bibliography{book.bib,packages.bib}
+  \bibliography{packages.bib,book.bib}
 
 \end{document}
