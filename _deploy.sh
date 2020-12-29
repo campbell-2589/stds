@@ -5,5 +5,5 @@ git rm -rf .
 touch .nojekyll
 git add .nojekyll
 
-git commit -m"Initial commit"
+git commit -m "bookdown commit"
 git push origin gh-pages
