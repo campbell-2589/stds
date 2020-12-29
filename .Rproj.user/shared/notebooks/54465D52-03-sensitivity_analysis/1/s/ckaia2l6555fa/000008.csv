@@ -1,0 +1,29 @@
+"0","n <- 100"
+"0","X <- data.frame(X1 = runif(n, 0.5, 1.5),"
+"0","                X2 = runif(n, 1.5, 4.5),"
+"0","                X3 = runif(n, 4.5, 13.5))"
+"0",""
+"0","# linear model : Y = X1 + X2 + X3"
+"0",""
+"0","y <- with(X, X1 + X2 + X3)"
+"0",""
+"0",""
+"0","Z <- src(X, y, rank = FALSE, logistic = FALSE, nboot = 0, conf = 0.95)"
+"0",""
+"0","pander(Z$SRC,caption = ""Standardized Regression Coefficients "")"
+"1","
+-------------------
+ &nbsp;   original 
+-------- ----------
+ **X1**    0.1074  
+
+ **X2**    0.3028  
+
+ **X3**    0.9569  
+-------------------
+
+Table: Standardized Regression Coefficients 
+
+"
+"0","ggplot(Z, ylim = c(-1,1))+ggtitle(""Standardized Regression Coefficients"")"
+"0",""

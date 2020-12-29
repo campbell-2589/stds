@@ -24,7 +24,7 @@
 <meta name="author" content="Bruce Campbell" />
 
 
-<meta name="date" content="2020-12-28" />
+<meta name="date" content="2020-12-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="final-words.html"/>
 
-<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,22 +50,24 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -86,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -132,15 +133,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">Selected Topics In Data Science</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="3" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>3</b> Literature</a></li>
-<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a></li>
-<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a>
-<ul>
+<li class="chapter" data-level="3" data-path="on-model-averaging.html"><a href="on-model-averaging.html"><i class="fa fa-check"></i><b>3</b> On Model Averaging</a></li>
+<li class="chapter" data-level="4" data-path="sensitivity-analysis-and-shapley-values.html"><a href="sensitivity-analysis-and-shapley-values.html"><i class="fa fa-check"></i><b>4</b> Sensitivity Analysis and Shapley Values</a><ul>
+<li class="chapter" data-level="4.1" data-path="sensitivity-analysis-and-shapley-values.html"><a href="sensitivity-analysis-and-shapley-values.html#relationship-between-sobol-indices-and-shapley-values"><i class="fa fa-check"></i><b>4.1</b> Relationship between Sobol indices and Shapley values</a></li>
+<li class="chapter" data-level="4.2" data-path="sensitivity-analysis-and-shapley-values.html"><a href="sensitivity-analysis-and-shapley-values.html#cran-sensitivity-package"><i class="fa fa-check"></i><b>4.2</b> CRAN sensitivity package</a></li>
+<li class="chapter" data-level="4.3" data-path="sensitivity-analysis-and-shapley-values.html"><a href="sensitivity-analysis-and-shapley-values.html#partial-correlation-coefficients"><i class="fa fa-check"></i><b>4.3</b> Partial Correlation Coefficients</a></li>
+<li class="chapter" data-level="4.4" data-path="sensitivity-analysis-and-shapley-values.html"><a href="sensitivity-analysis-and-shapley-values.html#sobol-indices-for-deterministic-function-and-for-model"><i class="fa fa-check"></i><b>4.4</b> Sobol indices for deterministic function and for model</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a><ul>
 <li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
 <li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
 </ul></li>
@@ -169,12 +174,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
 
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-xie2015" class="csl-entry">
-Xie, Yihui. 2015. <em>Dynamic Documents with <span>R</span> and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.org/knitr/">http://yihui.org/knitr/</a>.
+<div id="refs" class="references">
+<div>
+<p>Saltelli, Andrea, and I. M. Sobol’. 1995. “Sensitivity Analysis for Nonlinear Mathematical Models: Numerical Experience.” <em>Matematicheskoe Modelirovanie</em> 7 (January).</p>
 </div>
-<div id="ref-R-bookdown" class="csl-entry">
-———. 2020. <em>Bookdown: Authoring Books and Technical Documents with r Markdown</em>. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.
+<div>
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.org/knitr/">http://yihui.org/knitr/</a>.</p>
+</div>
+<div>
+<p>———. 2020. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.</p>
 </div>
 </div>
 </div>
@@ -234,6 +242,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

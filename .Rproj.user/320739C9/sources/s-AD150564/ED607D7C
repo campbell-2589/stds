@@ -1,0 +1,24 @@
+{
+    "id": "ED607D7C",
+    "path": "~/work/stds/03-sensitivity_analysis.Rmd",
+    "project_path": "03-sensitivity_analysis.Rmd",
+    "type": "r_markdown",
+    "hash": "3006856540",
+    "contents": "",
+    "dirty": true,
+    "created": 1609254400062.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "cursorPosition": "106,0",
+        "scrollLine": "73"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1609271022,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1609271022122,
+    "read_only": false,
+    "read_only_alternatives": []
+}

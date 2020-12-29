@@ -1,0 +1,14 @@
+"0",""
+"0","x <- pcc(X, y, nboot = 100)"
+"0","print(x)"
+"1","
+Call:
+"
+"1",""
+"1","pcc(X = X, y = y, nboot = 100)"
+"1",""
+"1","
+"
+"1","
+Partial Correlation Coefficients (PCC):
+"

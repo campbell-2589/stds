@@ -1,0 +1,24 @@
+{
+    "id": "C950D184",
+    "path": "~/work/stds/01-intro.Rmd",
+    "project_path": "01-intro.Rmd",
+    "type": "r_markdown",
+    "hash": "1519467039",
+    "contents": "",
+    "dirty": false,
+    "created": 1609253483340.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "cursorPosition": "3,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1609254167,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1609254167890,
+    "read_only": false,
+    "read_only_alternatives": []
+}

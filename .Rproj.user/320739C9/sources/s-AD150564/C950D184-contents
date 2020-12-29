@@ -1,0 +1,3 @@
+# Introduction {#intro}
+
+This is a living book. It's under development. We are using the **bookdown** package [@R-bookdown] in this book, which was built on top of R Markdown and **knitr** [@xie2015].

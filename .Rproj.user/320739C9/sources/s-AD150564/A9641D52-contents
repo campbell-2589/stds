@@ -1,0 +1,5 @@
+book_filename: "topics_in_data_science"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "

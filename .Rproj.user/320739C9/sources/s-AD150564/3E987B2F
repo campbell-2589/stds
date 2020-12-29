@@ -1,0 +1,32 @@
+{
+    "id": "3E987B2F",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1609270356494.0,
+    "source_on_save": false,
+    "relative_order": 15,
+    "properties": {
+        "expression": "lm.predict",
+        "caption": "lm.predict",
+        "totalObservations": 100,
+        "displayedObservations": 100,
+        "variables": 3,
+        "cacheKey": "87AA7AF0",
+        "object": "lm.predict",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=lm.predict&cache_key=87AA7AF0&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 4422944270695822441,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1609270356494,
+    "read_only": false,
+    "read_only_alternatives": []
+}

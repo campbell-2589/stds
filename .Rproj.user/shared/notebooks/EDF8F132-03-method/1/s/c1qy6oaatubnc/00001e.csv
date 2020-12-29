@@ -1,0 +1,5 @@
+"0",""
+"0","#lm.fit = lm(y ~ X1+X2+X3,data = df)"
+"0","#summary(lm.fit)"
+"0","#attach(df)"
+"0","#plot(y, X1+X2+X3)"

@@ -1,0 +1,22 @@
+"0","y <- with(X, X1 + X2 + X3)"
+"0","y <- y + rnorm(nrow(X),0,1/2)"
+"0","df<- data.frame(cbind(X,y))"
+"0",""
+"0","Z <- src(X, y, rank = FALSE, logistic = FALSE, nboot = 0, conf = 0.95)"
+"0",""
+"0","pander(Z$SRC,caption = ""Standardized Regression Coefficients "")"
+"1","
+-------------------
+ &nbsp;   original 
+-------- ----------
+ **X1**    0.1069  
+
+ **X2**    0.2764  
+
+ **X3**    0.8968  
+-------------------
+
+Table: Standardized Regression Coefficients 
+
+"
+"0","ggplot(Z, ylim = c(-1,1))+ggtitle(""Standardized Regression Coefficients"")"
