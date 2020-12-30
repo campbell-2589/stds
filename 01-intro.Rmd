@@ -1,3 +1,5 @@
 # Introduction {#intro}
 
+“Where must we go, we who wander this wasteland, in search of our better selves.” -The First History of Man
+
 This is a living book. It's under development. We are using the **bookdown** package [@R-bookdown] in this book, which was built on top of R Markdown and **knitr** [@xie2015].

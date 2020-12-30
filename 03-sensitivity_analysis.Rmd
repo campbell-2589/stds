@@ -105,14 +105,14 @@ yhat.fun<-function(X,lm)
   return(yhat)
 }
 
-nboot = 100
+nboot = 1000
 
-x <- sobol(model = y.fun, X[1:50,], X[51:100,], order = 2, nboot = nboot)
+x <- sobol(model = y.fun, X[1:50,], X[51:100,], order = 3, nboot = nboot)
 S.sobol <- x$S
 pander(S.sobol)
 #yhat.fun(data.frame(X1=1,X2=2,X3=3),lm.fit)
 
-x <- sobol(model = yhat.fun,X[1:50,], X[51:100,], order = 2, nboot = nboot)
+x <- sobol(model = yhat.fun,X[1:50,], X[51:100,], order = 3, nboot = nboot)
 S.sobol <- x$S
 pander(S.sobol)
 ```

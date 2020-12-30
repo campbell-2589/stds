@@ -1,0 +1,8 @@
+# Random Effects and Mixed Models
+
+
+## Crossed versus nested random effects.
+
+How do they differ and how are they specified correctly in lme4 and in JAGS / Stan?
+
+## Example two

@@ -205,17 +205,17 @@ original\strut
 \begin{minipage}[t]{0.12\columnwidth}\centering
 \textbf{X1}\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-0.101\strut
+0.1106\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.12\columnwidth}\centering
 \textbf{X2}\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-0.3301\strut
+0.3206\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.12\columnwidth}\centering
 \textbf{X3}\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-0.9283\strut
+0.9371\strut
 \end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
@@ -261,17 +261,17 @@ original\strut
 \begin{minipage}[t]{0.12\columnwidth}\centering
 \textbf{X1}\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-0.1165\strut
+0.1249\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.12\columnwidth}\centering
 \textbf{X2}\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-0.3171\strut
+0.3653\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.12\columnwidth}\centering
 \textbf{X3}\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-0.9099\strut
+0.8997\strut
 \end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
@@ -310,20 +310,20 @@ We see how the importance of X3 is ranked above X2 and likewise X2 is more impor
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -0.62741 -0.10185  0.01695  0.14604  0.38982 
+## -0.42854 -0.14290 -0.01079  0.12130  0.50893 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) 4.264e-16  1.936e-02   0.000        1    
-## X1          1.165e-01  1.986e-02   5.863 6.42e-08 ***
-## X2          3.171e-01  1.985e-02  15.976  < 2e-16 ***
-## X3          9.099e-01  1.947e-02  46.735  < 2e-16 ***
+## (Intercept) 4.885e-16  1.931e-02   0.000        1    
+## X1          1.249e-01  1.964e-02   6.358 6.88e-09 ***
+## X2          3.653e-01  1.964e-02  18.600  < 2e-16 ***
+## X3          8.997e-01  1.941e-02  46.341  < 2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.1936 on 96 degrees of freedom
-## Multiple R-squared:  0.9637, Adjusted R-squared:  0.9625 
-## F-statistic: 848.7 on 3 and 96 DF,  p-value: < 2.2e-16
+## Residual standard error: 0.1931 on 96 degrees of freedom
+## Multiple R-squared:  0.9639, Adjusted R-squared:  0.9627 
+## F-statistic: 853.3 on 3 and 96 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
 We see that the values are very close.
@@ -344,10 +344,10 @@ We see that the values are very close.
 ## pcc(X = X, y = y, nboot = 100)
 ## 
 ## Partial Correlation Coefficients (PCC):
-##     original          bias  std. error min. c.i. max. c.i.
-## X1 0.5134715  5.023519e-04 0.066248670 0.4157600 0.6870635
-## X2 0.8524548 -3.249625e-06 0.021846339 0.8139257 0.9052334
-## X3 0.9787221 -3.341981e-05 0.003358137 0.9730419 0.9856168
+##     original         bias  std. error min. c.i. max. c.i.
+## X1 0.5443617 0.0087023763 0.064338675 0.4313976 0.6530953
+## X2 0.8847467 0.0018609390 0.019203198 0.8468250 0.9213212
+## X3 0.9783713 0.0003925858 0.003460431 0.9717648 0.9855657
 \end{verbatim}
 
 \hypertarget{sobol-indices-for-deterministic-function-and-for-model}{%
@@ -374,9 +374,9 @@ We see that the values are very close.
   \KeywordTok{return}\NormalTok{(yhat)}
 \NormalTok{\}}
 
-\NormalTok{nboot =}\StringTok{ }\DecValTok{100}
+\NormalTok{nboot =}\StringTok{ }\DecValTok{1000}
 
-\NormalTok{x <-}\StringTok{ }\KeywordTok{sobol}\NormalTok{(}\DataTypeTok{model =}\NormalTok{ y.fun, X[}\DecValTok{1}\OperatorTok{:}\DecValTok{50}\NormalTok{,], X[}\DecValTok{51}\OperatorTok{:}\DecValTok{100}\NormalTok{,], }\DataTypeTok{order =} \DecValTok{2}\NormalTok{, }\DataTypeTok{nboot =}\NormalTok{ nboot)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{sobol}\NormalTok{(}\DataTypeTok{model =}\NormalTok{ y.fun, X[}\DecValTok{1}\OperatorTok{:}\DecValTok{50}\NormalTok{,], X[}\DecValTok{51}\OperatorTok{:}\DecValTok{100}\NormalTok{,], }\DataTypeTok{order =} \DecValTok{3}\NormalTok{, }\DataTypeTok{nboot =}\NormalTok{ nboot)}
 \NormalTok{S.sobol <-}\StringTok{ }\NormalTok{x}\OperatorTok{$}\NormalTok{S}
 \KeywordTok{pander}\NormalTok{(S.sobol)}
 \end{Highlighting}
@@ -384,11 +384,11 @@ We see that the values are very close.
 
 \begin{longtable}[]{@{}cccccc@{}}
 \toprule
-\begin{minipage}[b]{0.14\columnwidth}\centering
+\begin{minipage}[b]{0.17\columnwidth}\centering
 ~\strut
-\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
 original\strut
-\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
 bias\strut
 \end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\centering
 std. error\strut
@@ -399,83 +399,96 @@ max. c.i.\strut
 \end{minipage}\tabularnewline
 \midrule
 \endhead
-\begin{minipage}[t]{0.14\columnwidth}\centering
+\begin{minipage}[t]{0.17\columnwidth}\centering
 \textbf{X1}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
-0.01409\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
--0.03702\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.04189\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.06411\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.8124\strut
+0.9629\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--1.581\strut
+-1.879\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-2.173\strut
+1.991\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.14\columnwidth}\centering
+\begin{minipage}[t]{0.17\columnwidth}\centering
 \textbf{X2}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
--0.1993\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
--0.05273\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.004908\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.04476\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.818\strut
+0.9536\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--1.678\strut
+-1.804\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.794\strut
+2.092\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.14\columnwidth}\centering
+\begin{minipage}[t]{0.17\columnwidth}\centering
 \textbf{X3}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
-1.63\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
-0.05383\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+1.496\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.01854\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.3927\strut
+0.3094\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-0.8466\strut
+0.8037\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-2.476\strut
+2.019\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.14\columnwidth}\centering
+\begin{minipage}[t]{0.17\columnwidth}\centering
 **X1*X2**\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
-0.014\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
-0.02349\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.02577\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.05486\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.7954\strut
+0.9714\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--2.086\strut
+-2.006\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.583\strut
+1.819\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.14\columnwidth}\centering
+\begin{minipage}[t]{0.17\columnwidth}\centering
 **X1*X3**\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
-0.014\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
-0.02349\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.02577\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.05486\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.7954\strut
+0.9714\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--2.086\strut
+-2.006\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.583\strut
+1.819\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.14\columnwidth}\centering
+\begin{minipage}[t]{0.17\columnwidth}\centering
 **X2*X3**\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
-0.014\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
-0.02349\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.02577\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.05486\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.7954\strut
+0.9714\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--2.086\strut
+-2.006\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.583\strut
+1.819\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\centering
+\textbf{X1\emph{X2}X3}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.02577\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.05486\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.9714\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+-1.819\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+2.006\strut
 \end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
@@ -484,7 +497,7 @@ max. c.i.\strut
 \begin{Highlighting}[]
 \CommentTok{#yhat.fun(data.frame(X1=1,X2=2,X3=3),lm.fit)}
 
-\NormalTok{x <-}\StringTok{ }\KeywordTok{sobol}\NormalTok{(}\DataTypeTok{model =}\NormalTok{ yhat.fun,X[}\DecValTok{1}\OperatorTok{:}\DecValTok{50}\NormalTok{,], X[}\DecValTok{51}\OperatorTok{:}\DecValTok{100}\NormalTok{,], }\DataTypeTok{order =} \DecValTok{2}\NormalTok{, }\DataTypeTok{nboot =}\NormalTok{ nboot)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{sobol}\NormalTok{(}\DataTypeTok{model =}\NormalTok{ yhat.fun,X[}\DecValTok{1}\OperatorTok{:}\DecValTok{50}\NormalTok{,], X[}\DecValTok{51}\OperatorTok{:}\DecValTok{100}\NormalTok{,], }\DataTypeTok{order =} \DecValTok{3}\NormalTok{, }\DataTypeTok{nboot =}\NormalTok{ nboot)}
 \NormalTok{S.sobol <-}\StringTok{ }\NormalTok{x}\OperatorTok{$}\NormalTok{S}
 \KeywordTok{pander}\NormalTok{(S.sobol)}
 \end{Highlighting}
@@ -492,11 +505,11 @@ max. c.i.\strut
 
 \begin{longtable}[]{@{}cccccc@{}}
 \toprule
-\begin{minipage}[b]{0.14\columnwidth}\centering
+\begin{minipage}[b]{0.17\columnwidth}\centering
 ~\strut
-\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
 original\strut
-\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
 bias\strut
 \end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\centering
 std. error\strut
@@ -507,83 +520,96 @@ max. c.i.\strut
 \end{minipage}\tabularnewline
 \midrule
 \endhead
-\begin{minipage}[t]{0.14\columnwidth}\centering
+\begin{minipage}[t]{0.17\columnwidth}\centering
 \textbf{X1}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
--0.2086\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
--0.03056\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.2169\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.05607\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.7721\strut
+0.8506\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--1.751\strut
+-1.892\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.523\strut
+1.442\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.14\columnwidth}\centering
+\begin{minipage}[t]{0.17\columnwidth}\centering
 \textbf{X2}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
--0.2831\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
--0.06508\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.2314\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.05833\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.7892\strut
+0.8506\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--1.766\strut
+-1.956\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.478\strut
+1.48\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.14\columnwidth}\centering
+\begin{minipage}[t]{0.17\columnwidth}\centering
 \textbf{X3}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
-1.383\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
-0.04754\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+1.327\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.01094\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.1276\strut
+0.1187\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.005\strut
+1.058\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.557\strut
+1.527\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.14\columnwidth}\centering
+\begin{minipage}[t]{0.17\columnwidth}\centering
 **X1*X2**\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
-0.2113\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
-0.03101\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.2081\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.05807\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.7722\strut
+0.8513\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--1.516\strut
+-1.461\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.746\strut
+1.901\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.14\columnwidth}\centering
+\begin{minipage}[t]{0.17\columnwidth}\centering
 **X1*X3**\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
-0.2113\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
-0.03101\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.2081\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.05807\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.7722\strut
+0.8513\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--1.516\strut
+-1.461\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.746\strut
+1.901\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.14\columnwidth}\centering
+\begin{minipage}[t]{0.17\columnwidth}\centering
 **X2*X3**\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
-0.2113\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
-0.03101\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.2081\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.05807\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.7722\strut
+0.8513\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--1.516\strut
+-1.461\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.746\strut
+1.901\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\centering
+\textbf{X1\emph{X2}X3}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.2081\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.05807\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.8513\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+-1.901\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+1.461\strut
 \end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
