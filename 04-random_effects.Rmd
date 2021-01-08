@@ -5,4 +5,7 @@
 
 How do they differ and how are they specified correctly in lme4 and in JAGS / Stan?
 
-## Example two
+## Very Large Number of RE's
+
+https://arxiv.org/abs/1610.08088
+
