@@ -24,7 +24,7 @@
 <meta name="author" content="Bruce Campbell" />
 
 
-<meta name="date" content="2020-12-29" />
+<meta name="date" content="2021-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="intro.html"/>
 <link rel="next" href="sensitivity-analysis-and-shapley-values.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,24 +51,22 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +86,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -139,17 +138,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
 <li class="chapter" data-level="3" data-path="on-model-averaging.html"><a href="on-model-averaging.html"><i class="fa fa-check"></i><b>3</b> On Model Averaging</a></li>
-<li class="chapter" data-level="4" data-path="sensitivity-analysis-and-shapley-values.html"><a href="sensitivity-analysis-and-shapley-values.html"><i class="fa fa-check"></i><b>4</b> Sensitivity Analysis and Shapley Values</a><ul>
+<li class="chapter" data-level="4" data-path="sensitivity-analysis-and-shapley-values.html"><a href="sensitivity-analysis-and-shapley-values.html"><i class="fa fa-check"></i><b>4</b> Sensitivity Analysis and Shapley Values</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="sensitivity-analysis-and-shapley-values.html"><a href="sensitivity-analysis-and-shapley-values.html#relationship-between-sobol-indices-and-shapley-values"><i class="fa fa-check"></i><b>4.1</b> Relationship between Sobol indices and Shapley values</a></li>
 <li class="chapter" data-level="4.2" data-path="sensitivity-analysis-and-shapley-values.html"><a href="sensitivity-analysis-and-shapley-values.html#cran-sensitivity-package"><i class="fa fa-check"></i><b>4.2</b> CRAN sensitivity package</a></li>
 <li class="chapter" data-level="4.3" data-path="sensitivity-analysis-and-shapley-values.html"><a href="sensitivity-analysis-and-shapley-values.html#partial-correlation-coefficients"><i class="fa fa-check"></i><b>4.3</b> Partial Correlation Coefficients</a></li>
 <li class="chapter" data-level="4.4" data-path="sensitivity-analysis-and-shapley-values.html"><a href="sensitivity-analysis-and-shapley-values.html#sobol-indices-for-deterministic-function-and-for-model"><i class="fa fa-check"></i><b>4.4</b> Sobol indices for deterministic function and for model</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a><ul>
-<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
-<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
+<li class="chapter" data-level="5" data-path="random-effects-and-mixed-models.html"><a href="random-effects-and-mixed-models.html"><i class="fa fa-check"></i><b>5</b> Random Effects and Mixed Models</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="random-effects-and-mixed-models.html"><a href="random-effects-and-mixed-models.html#crossed-versus-nested-random-effects."><i class="fa fa-check"></i><b>5.1</b> Crossed versus nested random effects.</a></li>
+<li class="chapter" data-level="5.2" data-path="random-effects-and-mixed-models.html"><a href="random-effects-and-mixed-models.html#very-large-number-of-res"><i class="fa fa-check"></i><b>5.2</b> Very Large Number of RE’s</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="6" data-path="propensity-score-matching.html"><a href="propensity-score-matching.html"><i class="fa fa-check"></i><b>6</b> Propensity Score Matching</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="propensity-score-matching.html"><a href="propensity-score-matching.html#caliper"><i class="fa fa-check"></i><b>6.1</b> Caliper</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="introduction-to-normalizing-flows.html"><a href="introduction-to-normalizing-flows.html"><i class="fa fa-check"></i><b>7</b> Introduction to Normalizing Flows</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="introduction-to-normalizing-flows.html"><a href="introduction-to-normalizing-flows.html#variational-inference-with-nf"><i class="fa fa-check"></i><b>7.1</b> Variational Inference With NF</a></li>
+<li class="chapter" data-level="7.2" data-path="introduction-to-normalizing-flows.html"><a href="introduction-to-normalizing-flows.html#section"><i class="fa fa-check"></i><b>7.2</b> </a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -171,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="on-model-averaging" class="section level1">
+<div id="on-model-averaging" class="section level1" number="3">
 <h1><span class="header-section-number">Chapter 3</span> On Model Averaging</h1>
 <p>Recall that we can break down model error into the bias an variance <span class="math inline">\(bias(\hat{Y})= E[\hat{Y}-E[Y]]\)</span></p>
 <p>If we are averaging models <span class="math inline">\(i=1, \cdots ,k\)</span> then</p>

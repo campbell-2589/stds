@@ -1,4 +1,5 @@
 book_filename: "topics_in_data_science"
+rmd_files: ["index.Rmd",  "intro.Rmd","model_averaging.Rmd","sensitivity_analysis.Rmd","random_effects.Rmd","propensity_score_matching.Rmd" ,"normalizing_flows.Rmd","references.Rmd"]
 delete_merged_file: true
 language:
   ui:

@@ -92,7 +92,7 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
-\usepackage{graphicx,grffile}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -110,12 +110,16 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
+
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
 
 \title{Selected Topics In Data Science}
 \author{Bruce Campbell}
-\date{2020-12-29}
+\date{2021-01-26}
 
 \begin{document}
 \maketitle
@@ -128,6 +132,8 @@ This is the first installment on my promise to elucidate less popular topics in 
 
 \hypertarget{intro}{%
 \chapter{Introduction}\label{intro}}
+
+``Where must we go, we who wander this wasteland, in search of our better selves.'' -The First History of Man
 
 This is a living book. It's under development. We are using the \textbf{bookdown} package \citep{R-bookdown} in this book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
 
@@ -155,11 +161,11 @@ Shapley values are based on \(f(x)-E[f(x)]\) while Sobol indices decompose outpu
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(ggplot2)}
-\KeywordTok{library}\NormalTok{(pander)}
-\ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(sensitivity))\{}
-    \KeywordTok{install.packages}\NormalTok{(}\StringTok{"sensitivity"}\NormalTok{)}
-    \KeywordTok{library}\NormalTok{(sensitivity)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(pander)}
+\ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(sensitivity))\{}
+    \FunctionTok{install.packages}\NormalTok{(}\StringTok{"sensitivity"}\NormalTok{)}
+    \FunctionTok{library}\NormalTok{(sensitivity)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -168,19 +174,19 @@ Standardized Regression Coefficients (SRC), or the Standardized Rank Regression 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{n <-}\StringTok{ }\DecValTok{100}
-\NormalTok{X <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{X1 =} \KeywordTok{runif}\NormalTok{(n, }\FloatTok{0.5}\NormalTok{, }\FloatTok{1.5}\NormalTok{),}
-                \DataTypeTok{X2 =} \KeywordTok{runif}\NormalTok{(n, }\FloatTok{1.5}\NormalTok{, }\FloatTok{4.5}\NormalTok{),}
-                \DataTypeTok{X3 =} \KeywordTok{runif}\NormalTok{(n, }\FloatTok{4.5}\NormalTok{, }\FloatTok{13.5}\NormalTok{))}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{100}
+\NormalTok{X }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{X1 =} \FunctionTok{runif}\NormalTok{(n, }\FloatTok{0.5}\NormalTok{, }\FloatTok{1.5}\NormalTok{),}
+                \AttributeTok{X2 =} \FunctionTok{runif}\NormalTok{(n, }\FloatTok{1.5}\NormalTok{, }\FloatTok{4.5}\NormalTok{),}
+                \AttributeTok{X3 =} \FunctionTok{runif}\NormalTok{(n, }\FloatTok{4.5}\NormalTok{, }\FloatTok{13.5}\NormalTok{))}
 
-\CommentTok{# linear model : Y = X1 + X2 + X3}
+\CommentTok{\# linear model : Y = X1 + X2 + X3}
 
-\NormalTok{y <-}\StringTok{ }\KeywordTok{with}\NormalTok{(X, X1 }\OperatorTok{+}\StringTok{ }\NormalTok{X2 }\OperatorTok{+}\StringTok{ }\NormalTok{X3)}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(X, X1 }\SpecialCharTok{+}\NormalTok{ X2 }\SpecialCharTok{+}\NormalTok{ X3)}
 
 
-\NormalTok{Z <-}\StringTok{ }\KeywordTok{src}\NormalTok{(X, y, }\DataTypeTok{rank =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{logistic =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{nboot =} \DecValTok{0}\NormalTok{, }\DataTypeTok{conf =} \FloatTok{0.95}\NormalTok{)}
+\NormalTok{Z }\OtherTok{\textless{}{-}} \FunctionTok{src}\NormalTok{(X, y, }\AttributeTok{rank =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{logistic =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{nboot =} \DecValTok{0}\NormalTok{, }\AttributeTok{conf =} \FloatTok{0.95}\NormalTok{)}
 
-\KeywordTok{pander}\NormalTok{(Z}\OperatorTok{$}\NormalTok{SRC,}\DataTypeTok{caption =} \StringTok{"Standardized Regression Coefficients "}\NormalTok{)}
+\FunctionTok{pander}\NormalTok{(Z}\SpecialCharTok{$}\NormalTok{SRC,}\AttributeTok{caption =} \StringTok{"Standardized Regression Coefficients "}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -205,24 +211,24 @@ original\strut
 \begin{minipage}[t]{0.12\columnwidth}\centering
 \textbf{X1}\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-0.1106\strut
+0.1104\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.12\columnwidth}\centering
 \textbf{X2}\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-0.3206\strut
+0.3524\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.12\columnwidth}\centering
 \textbf{X3}\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-0.9371\strut
+0.9407\strut
 \end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(Z, }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Standardized Regression Coefficients"}\NormalTok{)}
+\FunctionTok{ggplot}\NormalTok{(Z, }\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}\SpecialCharTok{+}\FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Standardized Regression Coefficients"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -230,13 +236,13 @@ original\strut
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{y <-}\StringTok{ }\KeywordTok{with}\NormalTok{(X, X1 }\OperatorTok{+}\StringTok{ }\NormalTok{X2 }\OperatorTok{+}\StringTok{ }\NormalTok{X3)}
-\NormalTok{y <-}\StringTok{ }\NormalTok{y }\OperatorTok{+}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\KeywordTok{nrow}\NormalTok{(X),}\DecValTok{0}\NormalTok{,}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{)}
-\NormalTok{df<-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(X,y))}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(X, X1 }\SpecialCharTok{+}\NormalTok{ X2 }\SpecialCharTok{+}\NormalTok{ X3)}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ y }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(X),}\DecValTok{0}\NormalTok{,}\DecValTok{1}\SpecialCharTok{/}\DecValTok{2}\NormalTok{)}
+\NormalTok{df}\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(X,y))}
 
-\NormalTok{Z <-}\StringTok{ }\KeywordTok{src}\NormalTok{(X, y, }\DataTypeTok{rank =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{logistic =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{nboot =} \DecValTok{0}\NormalTok{, }\DataTypeTok{conf =} \FloatTok{0.95}\NormalTok{)}
+\NormalTok{Z }\OtherTok{\textless{}{-}} \FunctionTok{src}\NormalTok{(X, y, }\AttributeTok{rank =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{logistic =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{nboot =} \DecValTok{0}\NormalTok{, }\AttributeTok{conf =} \FloatTok{0.95}\NormalTok{)}
 
-\KeywordTok{pander}\NormalTok{(Z}\OperatorTok{$}\NormalTok{SRC,}\DataTypeTok{caption =} \StringTok{"Standardized Regression Coefficients "}\NormalTok{)}
+\FunctionTok{pander}\NormalTok{(Z}\SpecialCharTok{$}\NormalTok{SRC,}\AttributeTok{caption =} \StringTok{"Standardized Regression Coefficients "}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -261,24 +267,24 @@ original\strut
 \begin{minipage}[t]{0.12\columnwidth}\centering
 \textbf{X1}\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-0.1249\strut
+0.08958\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.12\columnwidth}\centering
 \textbf{X2}\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-0.3653\strut
+0.3392\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.12\columnwidth}\centering
 \textbf{X3}\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-0.8997\strut
+0.9295\strut
 \end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(Z, }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Standardized Regression Coefficients"}\NormalTok{)}
+\FunctionTok{ggplot}\NormalTok{(Z, }\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}\SpecialCharTok{+}\FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Standardized Regression Coefficients"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -286,10 +292,10 @@ original\strut
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{#lm.fit = lm(y ~ X1+X2+X3,data = df)}
-\CommentTok{#summary(lm.fit)}
-\CommentTok{#attach(df)}
-\CommentTok{#plot(y, X1+X2+X3)}
+\CommentTok{\#lm.fit = lm(y \textasciitilde{} X1+X2+X3,data = df)}
+\CommentTok{\#summary(lm.fit)}
+\CommentTok{\#attach(df)}
+\CommentTok{\#plot(y, X1+X2+X3)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -297,9 +303,9 @@ We see how the importance of X3 is ranked above X2 and likewise X2 is more impor
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{dfs<-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{scale}\NormalTok{(df,}\DataTypeTok{center =} \OtherTok{TRUE}\NormalTok{,}\DataTypeTok{scale =} \OtherTok{TRUE}\NormalTok{))}
-\NormalTok{lm.fit =}\StringTok{ }\KeywordTok{lm}\NormalTok{(y }\OperatorTok{~}\StringTok{ }\NormalTok{X1}\OperatorTok{+}\NormalTok{X2}\OperatorTok{+}\NormalTok{X3,}\DataTypeTok{data =}\NormalTok{ dfs)}
-\KeywordTok{summary}\NormalTok{(lm.fit)}
+\NormalTok{dfs}\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{scale}\NormalTok{(df,}\AttributeTok{center =} \ConstantTok{TRUE}\NormalTok{,}\AttributeTok{scale =} \ConstantTok{TRUE}\NormalTok{))}
+\NormalTok{lm.fit }\OtherTok{=} \FunctionTok{lm}\NormalTok{(y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ X1}\SpecialCharTok{+}\NormalTok{X2}\SpecialCharTok{+}\NormalTok{X3,}\AttributeTok{data =}\NormalTok{ dfs)}
+\FunctionTok{summary}\NormalTok{(lm.fit)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -310,20 +316,20 @@ We see how the importance of X3 is ranked above X2 and likewise X2 is more impor
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -0.42854 -0.14290 -0.01079  0.12130  0.50893 
+## -0.60361 -0.09522 -0.00626  0.08943  0.40125 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) 4.885e-16  1.931e-02   0.000        1    
-## X1          1.249e-01  1.964e-02   6.358 6.88e-09 ***
-## X2          3.653e-01  1.964e-02  18.600  < 2e-16 ***
-## X3          8.997e-01  1.941e-02  46.341  < 2e-16 ***
+## (Intercept) 3.054e-16  1.769e-02   0.000        1    
+## X1          8.958e-02  1.793e-02   4.998 2.61e-06 ***
+## X2          3.392e-01  1.781e-02  19.047  < 2e-16 ***
+## X3          9.295e-01  1.790e-02  51.942  < 2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.1931 on 96 degrees of freedom
-## Multiple R-squared:  0.9639, Adjusted R-squared:  0.9627 
-## F-statistic: 853.3 on 3 and 96 DF,  p-value: < 2.2e-16
+## Residual standard error: 0.1769 on 96 degrees of freedom
+## Multiple R-squared:  0.9696, Adjusted R-squared:  0.9687 
+## F-statistic:  1022 on 3 and 96 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
 We see that the values are very close.
@@ -333,8 +339,8 @@ We see that the values are very close.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\KeywordTok{pcc}\NormalTok{(X, y, }\DataTypeTok{nboot =} \DecValTok{100}\NormalTok{)}
-\KeywordTok{print}\NormalTok{(x)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{pcc}\NormalTok{(X, y, }\AttributeTok{nboot =} \DecValTok{100}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -344,10 +350,10 @@ We see that the values are very close.
 ## pcc(X = X, y = y, nboot = 100)
 ## 
 ## Partial Correlation Coefficients (PCC):
-##     original         bias  std. error min. c.i. max. c.i.
-## X1 0.5443617 0.0087023763 0.064338675 0.4313976 0.6530953
-## X2 0.8847467 0.0018609390 0.019203198 0.8468250 0.9213212
-## X3 0.9783713 0.0003925858 0.003460431 0.9717648 0.9855657
+##     original          bias  std. error min. c.i. max. c.i.
+## X1 0.4543671  0.0041092337 0.080517838 0.2860613 0.6075130
+## X2 0.8892416 -0.0011730747 0.018469869 0.8569707 0.9281357
+## X3 0.9826698 -0.0001722503 0.003255498 0.9766680 0.9903750
 \end{verbatim}
 
 \hypertarget{sobol-indices-for-deterministic-function-and-for-model}{%
@@ -355,30 +361,30 @@ We see that the values are very close.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{y.fun <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(X) \{}
+\NormalTok{y.fun }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(X) \{}
   
-\NormalTok{  X1<-}\StringTok{ }\NormalTok{X[,}\DecValTok{1}\NormalTok{]}
-\NormalTok{  X2<-}\StringTok{ }\NormalTok{X[,}\DecValTok{2}\NormalTok{]}
-\NormalTok{  X3<-}\StringTok{ }\NormalTok{X[,}\DecValTok{3}\NormalTok{]}
+\NormalTok{  X1}\OtherTok{\textless{}{-}}\NormalTok{ X[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{  X2}\OtherTok{\textless{}{-}}\NormalTok{ X[,}\DecValTok{2}\NormalTok{]}
+\NormalTok{  X3}\OtherTok{\textless{}{-}}\NormalTok{ X[,}\DecValTok{3}\NormalTok{]}
   
-\NormalTok{  X1}\OperatorTok{+}\NormalTok{X2}\OperatorTok{+}\NormalTok{X3}
+\NormalTok{  X1}\SpecialCharTok{+}\NormalTok{X2}\SpecialCharTok{+}\NormalTok{X3}
 \NormalTok{\}}
 
-\NormalTok{yhat.fun<-}\ControlFlowTok{function}\NormalTok{(X,lm)}
+\NormalTok{yhat.fun}\OtherTok{\textless{}{-}}\ControlFlowTok{function}\NormalTok{(X,lm)}
 \NormalTok{\{}
-\NormalTok{  X1<-}\StringTok{ }\NormalTok{X[,}\DecValTok{1}\NormalTok{]}
-\NormalTok{  X2<-}\StringTok{ }\NormalTok{X[,}\DecValTok{2}\NormalTok{]}
-\NormalTok{  X3<-}\StringTok{ }\NormalTok{X[,}\DecValTok{3}\NormalTok{]}
+\NormalTok{  X1}\OtherTok{\textless{}{-}}\NormalTok{ X[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{  X2}\OtherTok{\textless{}{-}}\NormalTok{ X[,}\DecValTok{2}\NormalTok{]}
+\NormalTok{  X3}\OtherTok{\textless{}{-}}\NormalTok{ X[,}\DecValTok{3}\NormalTok{]}
   
-\NormalTok{  yhat <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(lm.fit,}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{X1=}\NormalTok{X1,}\DataTypeTok{X2=}\NormalTok{X2,}\DataTypeTok{X3=}\NormalTok{X3))}
-  \KeywordTok{return}\NormalTok{(yhat)}
+\NormalTok{  yhat }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(lm.fit,}\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{X1=}\NormalTok{X1,}\AttributeTok{X2=}\NormalTok{X2,}\AttributeTok{X3=}\NormalTok{X3))}
+  \FunctionTok{return}\NormalTok{(yhat)}
 \NormalTok{\}}
 
-\NormalTok{nboot =}\StringTok{ }\DecValTok{1000}
+\NormalTok{nboot }\OtherTok{=} \DecValTok{1000}
 
-\NormalTok{x <-}\StringTok{ }\KeywordTok{sobol}\NormalTok{(}\DataTypeTok{model =}\NormalTok{ y.fun, X[}\DecValTok{1}\OperatorTok{:}\DecValTok{50}\NormalTok{,], X[}\DecValTok{51}\OperatorTok{:}\DecValTok{100}\NormalTok{,], }\DataTypeTok{order =} \DecValTok{3}\NormalTok{, }\DataTypeTok{nboot =}\NormalTok{ nboot)}
-\NormalTok{S.sobol <-}\StringTok{ }\NormalTok{x}\OperatorTok{$}\NormalTok{S}
-\KeywordTok{pander}\NormalTok{(S.sobol)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{sobol}\NormalTok{(}\AttributeTok{model =}\NormalTok{ y.fun, X[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{50}\NormalTok{,], X[}\DecValTok{51}\SpecialCharTok{:}\DecValTok{100}\NormalTok{,], }\AttributeTok{order =} \DecValTok{3}\NormalTok{, }\AttributeTok{nboot =}\NormalTok{ nboot)}
+\NormalTok{S.sobol }\OtherTok{\textless{}{-}}\NormalTok{ x}\SpecialCharTok{$}\NormalTok{S}
+\FunctionTok{pander}\NormalTok{(S.sobol)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -402,104 +408,104 @@ max. c.i.\strut
 \begin{minipage}[t]{0.17\columnwidth}\centering
 \textbf{X1}\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
--0.04189\strut
+1.302\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
--0.06411\strut
+0.04949\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.9629\strut
+0.8788\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--1.879\strut
+-0.5695\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.991\strut
+2.849\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.17\columnwidth}\centering
 \textbf{X2}\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
-0.004908\strut
+1.494\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
--0.04476\strut
+0.04884\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.9536\strut
+0.8287\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--1.804\strut
+-0.4242\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-2.092\strut
+3.045\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.17\columnwidth}\centering
 \textbf{X3}\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
-1.496\strut
+1.527\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
-0.01854\strut
+0.03317\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.3094\strut
+0.3645\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-0.8037\strut
+0.76\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-2.019\strut
+2.196\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.17\columnwidth}\centering
 **X1*X2**\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
--0.02577\strut
+-1.453\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
-0.05486\strut
+-0.05783\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.9714\strut
+0.8793\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--2.006\strut
+-2.996\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.819\strut
+0.4286\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.17\columnwidth}\centering
 **X1*X3**\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
--0.02577\strut
+-1.453\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
-0.05486\strut
+-0.05783\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.9714\strut
+0.8793\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--2.006\strut
+-2.996\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.819\strut
+0.4286\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.17\columnwidth}\centering
 **X2*X3**\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
--0.02577\strut
+-1.453\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
-0.05486\strut
+-0.05783\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.9714\strut
+0.8793\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--2.006\strut
+-2.996\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.819\strut
+0.4286\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.17\columnwidth}\centering
 \textbf{X1\emph{X2}X3}\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
-0.02577\strut
+1.453\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
--0.05486\strut
+0.05783\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.9714\strut
+0.8793\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--1.819\strut
+-0.4286\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-2.006\strut
+2.996\strut
 \end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{#yhat.fun(data.frame(X1=1,X2=2,X3=3),lm.fit)}
+\CommentTok{\#yhat.fun(data.frame(X1=1,X2=2,X3=3),lm.fit)}
 
-\NormalTok{x <-}\StringTok{ }\KeywordTok{sobol}\NormalTok{(}\DataTypeTok{model =}\NormalTok{ yhat.fun,X[}\DecValTok{1}\OperatorTok{:}\DecValTok{50}\NormalTok{,], X[}\DecValTok{51}\OperatorTok{:}\DecValTok{100}\NormalTok{,], }\DataTypeTok{order =} \DecValTok{3}\NormalTok{, }\DataTypeTok{nboot =}\NormalTok{ nboot)}
-\NormalTok{S.sobol <-}\StringTok{ }\NormalTok{x}\OperatorTok{$}\NormalTok{S}
-\KeywordTok{pander}\NormalTok{(S.sobol)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{sobol}\NormalTok{(}\AttributeTok{model =}\NormalTok{ yhat.fun,X[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{50}\NormalTok{,], X[}\DecValTok{51}\SpecialCharTok{:}\DecValTok{100}\NormalTok{,], }\AttributeTok{order =} \DecValTok{3}\NormalTok{, }\AttributeTok{nboot =}\NormalTok{ nboot)}
+\NormalTok{S.sobol }\OtherTok{\textless{}{-}}\NormalTok{ x}\SpecialCharTok{$}\NormalTok{S}
+\FunctionTok{pander}\NormalTok{(S.sobol)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -523,112 +529,134 @@ max. c.i.\strut
 \begin{minipage}[t]{0.17\columnwidth}\centering
 \textbf{X1}\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
--0.2169\strut
+1.064\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
-0.05607\strut
+0.04465\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.8506\strut
+0.7367\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--1.892\strut
+-0.476\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.442\strut
+2.395\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.17\columnwidth}\centering
 \textbf{X2}\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
--0.2314\strut
+1.064\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
-0.05833\strut
+0.04445\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.8506\strut
+0.7332\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--1.956\strut
+-0.4372\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.48\strut
+2.384\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.17\columnwidth}\centering
 \textbf{X3}\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
-1.327\strut
+1.324\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
-0.01094\strut
+0.01343\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.1187\strut
+0.1234\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.058\strut
+1.043\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.527\strut
+1.533\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.17\columnwidth}\centering
 **X1*X2**\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
-0.2081\strut
+-1.078\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
--0.05807\strut
+-0.04514\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.8513\strut
+0.7354\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--1.461\strut
+-2.409\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.901\strut
+0.4652\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.17\columnwidth}\centering
 **X1*X3**\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
-0.2081\strut
+-1.078\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
--0.05807\strut
+-0.04514\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.8513\strut
+0.7354\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--1.461\strut
+-2.409\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.901\strut
+0.4652\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.17\columnwidth}\centering
 **X2*X3**\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
-0.2081\strut
+-1.078\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
--0.05807\strut
+-0.04514\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.8513\strut
+0.7354\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--1.461\strut
+-2.409\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.901\strut
+0.4652\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.17\columnwidth}\centering
 \textbf{X1\emph{X2}X3}\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
--0.2081\strut
+1.078\strut
 \end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
-0.05807\strut
+0.04514\strut
 \end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
-0.8513\strut
+0.7354\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
--1.901\strut
+-0.4652\strut
 \end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
-1.461\strut
+2.409\strut
 \end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
-\hypertarget{applications}{%
-\chapter{Applications}\label{applications}}
+\hypertarget{random-effects-and-mixed-models}{%
+\chapter{Random Effects and Mixed Models}\label{random-effects-and-mixed-models}}
 
-Some \emph{significant} applications are demonstrated in this chapter.
+\hypertarget{crossed-versus-nested-random-effects.}{%
+\section{Crossed versus nested random effects.}\label{crossed-versus-nested-random-effects.}}
 
-\hypertarget{example-one}{%
-\section{Example one}\label{example-one}}
+How do they differ and how are they specified correctly in lme4 and in JAGS / Stan?
 
-\hypertarget{example-two}{%
-\section{Example two}\label{example-two}}
+\hypertarget{very-large-number-of-res}{%
+\section{Very Large Number of RE's}\label{very-large-number-of-res}}
 
-\hypertarget{final-words}{%
-\chapter{Final Words}\label{final-words}}
+\url{https://arxiv.org/abs/1610.08088}
 
-We have finished a nice book.
+\hypertarget{propensity-score-matching}{%
+\chapter{Propensity Score Matching}\label{propensity-score-matching}}
+
+\hypertarget{caliper}{%
+\section{Caliper}\label{caliper}}
+
+Putting constraints on matching can reduce bias \citep{10.1093/aje/kwt212}.
+
+\emph{Matching on the propensity score is widely used to estimate the effect of an exposure in observational studies. However, the quality of the matches can be affected by decisions made during the matching process, particularly the order in which subjects are selected for matching and the maximum permitted difference between matched subjects (the ``caliper''). This study used simulations to explore the effects of these decisions on both the imbalance of covariates and the closeness of matching, while allowing the numbers of potential matches and strengths of association between the confounding variable and the exposure to vary. It was found that, without a caliper, substantial bias was possible, particularly with a relatively small reservoir of potential matches and strong confounder-exposure association. Use of the recommended caliper reduced the bias considerably, but bias remained if subjects were selected by increasing or decreasing propensity score. A tighter caliper led to greatly reduced bias and closer matches, although some subjects could not be matched. This study suggests that a narrow caliper can improve the performance of propensity score matching. In situations where it is impossible to find appropriate matches for all exposed subjects, it is better to select subjects in order of the best available matches, rather than increasing or decreasing the propensity score.}
+
+\hypertarget{introduction-to-normalizing-flows}{%
+\chapter{Introduction to Normalizing Flows}\label{introduction-to-normalizing-flows}}
+
+\hypertarget{variational-inference-with-nf}{%
+\section{Variational Inference With NF}\label{variational-inference-with-nf}}
+
+\emph{Variational inference now lies at the core of large-scale topic models of text (Hoffman et al., 2013), provides the state-of-the-art in semi-supervised classification (Kingma et al., 2014), drives the models that currently produce the most realistic generative models of images (Gregor et al., 2014; Rezende et al., 2014), and are a default Proceedings of the 32 nd International Conference on Machine Learning, Lille, France, 2015. JMLR: W\&CP volume 37. Copyright 2015 by the author(s). tool for the understanding of many physical and chemical systems. Despite these successes and ongoing advances, there are a number of disadvantages of variational methods that limit their power and hamper their wider adoption as a default method for statistical inference. It is one of these limitations, the choice of posterior approximation, that we address in this paper}
+
+{[}\url{http://proceedings.mlr.press/v37/rezende15.pdf}{]}
+
+\emph{Generative modeling loosely refers to building a model of data, for instance p(image), that we can sample from. This is in contrast to discriminative modeling, such as regression or classification, which tries to estimate conditional distributions such as p(class \textbar{} image).}
+
+\hypertarget{section}{%
+\section{}\label{section}}
 
   \bibliography{packages.bib,book.bib}
 
