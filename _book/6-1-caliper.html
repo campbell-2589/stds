@@ -5,7 +5,7 @@
 <meta charset="utf-8" />
 <meta name="generator" content="pandoc" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="References | Selected Topics In Data Science" />
+<meta property="og:title" content="6.1 Caliper | Selected Topics In Data Science" />
 <meta property="og:type" content="book" />
 
 
@@ -25,7 +25,7 @@ MathJax.Hub.Config({
 
 <meta name="description" content="This work is a series of topics the author found interesting and decided to write about.">
 
-<title>References | Selected Topics In Data Science</title>
+<title>6.1 Caliper | Selected Topics In Data Science</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -148,19 +148,16 @@ img {
 <li><a href="4-3-partial-correlation-coefficients.html#partial-correlation-coefficients"><span class="toc-section-number">4.3</span> Partial Correlation Coefficients</a></li>
 <li><a href="4-4-sobol-indices-for-deterministic-function-and-for-model.html#sobol-indices-for-deterministic-function-and-for-model"><span class="toc-section-number">4.4</span> Sobol indices for deterministic function and for model</a></li>
 </ul></li>
-<li class="has-sub"><a href="5-poincare-embedding.html#poincare-embedding"><span class="toc-section-number">5</span> Poincare Embedding</a><ul>
-<li><a href="5-1-embeddings.html#embeddings"><span class="toc-section-number">5.1</span> Embeddings</a></li>
+<li class="has-sub"><a href="5-random-effects-and-mixed-models.html#random-effects-and-mixed-models"><span class="toc-section-number">5</span> Random Effects and Mixed Models</a><ul>
+<li><a href="5-1-crossed-versus-nested-random-effects-.html#crossed-versus-nested-random-effects."><span class="toc-section-number">5.1</span> Crossed versus nested random effects.</a></li>
+<li><a href="5-2-very-large-number-of-res.html#very-large-number-of-res"><span class="toc-section-number">5.2</span> Very Large Number of RE’s</a></li>
 </ul></li>
-<li class="has-sub"><a href="6-random-effects-and-mixed-models.html#random-effects-and-mixed-models"><span class="toc-section-number">6</span> Random Effects and Mixed Models</a><ul>
-<li><a href="6-1-crossed-versus-nested-random-effects-.html#crossed-versus-nested-random-effects."><span class="toc-section-number">6.1</span> Crossed versus nested random effects.</a></li>
-<li><a href="6-2-very-large-number-of-res.html#very-large-number-of-res"><span class="toc-section-number">6.2</span> Very Large Number of RE’s</a></li>
+<li class="has-sub"><a href="6-propensity-score-matching.html#propensity-score-matching"><span class="toc-section-number">6</span> Propensity Score Matching</a><ul>
+<li><a href="6-1-caliper.html#caliper"><span class="toc-section-number">6.1</span> Caliper</a></li>
 </ul></li>
-<li class="has-sub"><a href="7-propensity-score-matching.html#propensity-score-matching"><span class="toc-section-number">7</span> Propensity Score Matching</a><ul>
-<li><a href="7-1-caliper.html#caliper"><span class="toc-section-number">7.1</span> Caliper</a></li>
-</ul></li>
-<li class="has-sub"><a href="8-introduction-to-normalizing-flows.html#introduction-to-normalizing-flows"><span class="toc-section-number">8</span> Introduction to Normalizing Flows</a><ul>
-<li><a href="8-1-variational-inference-with-nf.html#variational-inference-with-nf"><span class="toc-section-number">8.1</span> Variational Inference With NF</a></li>
-<li><a href="8-2-section.html#section"><span class="toc-section-number">8.2</span> </a></li>
+<li class="has-sub"><a href="7-introduction-to-normalizing-flows.html#introduction-to-normalizing-flows"><span class="toc-section-number">7</span> Introduction to Normalizing Flows</a><ul>
+<li><a href="7-1-variational-inference-with-nf.html#variational-inference-with-nf"><span class="toc-section-number">7.1</span> Variational Inference With NF</a></li>
+<li><a href="7-2-section.html#section"><span class="toc-section-number">7.2</span> </a></li>
 </ul></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
@@ -169,32 +166,22 @@ img {
 </div>
 <div class="row">
 <div class="col-sm-12">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
+<div id="caliper" class="section level2">
+<h2><span class="header-section-number">6.1</span> Caliper</h2>
+<p>Putting constraints on matching can reduce bias <span class="citation">(Lunt <a href="#ref-10.1093/aje/kwt212" role="doc-biblioref">2013</a>)</span>.</p>
+<p><em>Matching on the propensity score is widely used to estimate the effect of an exposure in observational studies. However, the quality of the matches can be affected by decisions made during the matching process, particularly the order in which subjects are selected for matching and the maximum permitted difference between matched subjects (the “caliper”). This study used simulations to explore the effects of these decisions on both the imbalance of covariates and the closeness of matching, while allowing the numbers of potential matches and strengths of association between the confounding variable and the exposure to vary. It was found that, without a caliper, substantial bias was possible, particularly with a relatively small reservoir of potential matches and strong confounder-exposure association. Use of the recommended caliper reduced the bias considerably, but bias remained if subjects were selected by increasing or decreasing propensity score. A tighter caliper led to greatly reduced bias and closer matches, although some subjects could not be matched. This study suggests that a narrow caliper can improve the performance of propensity score matching. In situations where it is impossible to find appropriate matches for all exposed subjects, it is better to select subjects in order of the best available matches, rather than increasing or decreasing the propensity score.</em></p>
 
+</div>
+<!-- </div> -->
+<h3>References</h3>
 <div id="refs" class="references">
-<div>
+<div id="ref-10.1093/aje/kwt212">
 <p>Lunt, Mark. 2013. “Selecting an Appropriate Caliper Can Be Essential for Achieving Good Balance With Propensity Score Matching.” <em>American Journal of Epidemiology</em> 179 (2): 226–35. <a href="https://doi.org/10.1093/aje/kwt212">https://doi.org/10.1093/aje/kwt212</a>.</p>
-</div>
-<div>
-<p>Nickel, Maximilian, and Douwe Kiela. 2017. “Poincaré Embeddings for Learning Hierarchical Representations.” <em>CoRR</em> abs/1705.08039. <a href="http://arxiv.org/abs/1705.08039">http://arxiv.org/abs/1705.08039</a>.</p>
-</div>
-<div>
-<p>———. 2018. “Learning Continuous Hierarchies in the Lorentz Model of Hyperbolic Geometry.” <em>CoRR</em> abs/1806.03417. <a href="http://arxiv.org/abs/1806.03417">http://arxiv.org/abs/1806.03417</a>.</p>
-</div>
-<div>
-<p>Saltelli, Andrea, and I. M. Sobol’. 1995. “Sensitivity Analysis for Nonlinear Mathematical Models: Numerical Experience.” <em>Matematicheskoe Modelirovanie</em> 7 (January).</p>
-</div>
-<div>
-<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.org/knitr/">http://yihui.org/knitr/</a>.</p>
-</div>
-<div>
-<p>———. 2020. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.</p>
-</div>
 </div>
 </div>
 <p style="text-align: center;">
-<a href="8-2-section.html"><button class="btn btn-default">Previous</button></a>
+<a href="6-propensity-score-matching.html"><button class="btn btn-default">Previous</button></a>
+<a href="7-introduction-to-normalizing-flows.html"><button class="btn btn-default">Next</button></a>
 </p>
 </div>
 </div>

@@ -9,4 +9,8 @@
 
 *Generative modeling loosely refers to building a model of data, for instance p(image), that we can sample from. This is in contrast to discriminative modeling, such as regression or classification, which tries to estimate conditional distributions such as p(class | image).*
 
-## 
+See also
+
+https://blog.evjang.com/2018/01/nf1.html
+
+https://deepgenerativemodels.github.io/notes/flow/
