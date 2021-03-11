@@ -1,0 +1,12 @@
+# Higher Criticism 
+
+
+Comes from the needs of Large Scale Inference - testing for effects in the age of high content screening. See 
+*Empirical Bayes Methods for Estimation, Testing and Prediction. B. Efron*
+
+Donoho
+https://www.jstor.org/stable/pdf/24780402.pdf?refreqid=excelsior%3A98f50337ba4fabafd7b1c9f081ee1f98
+
+Efron
+https://statweb.stanford.edu/~ckirby/brad/LSI/monograph_CUP.pdf
+
