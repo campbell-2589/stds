@@ -1,0 +1,17 @@
+# Hierarchical and grouped time series
+
+https://robjhyndman.com/software/
+
+## Reconciled Distributional Forecasts
+
+https://otexts.com/fpp3/rec-prob.html
+
+SO question 
+https://stats.stackexchange.com/questions/514050/how-to-add-coherent-distributions-from-reconciled-distributional-forecasts
+
+https://github.com/anastasiospanagiotelis/ProbReco
+
+
+https://robjhyndman.com/publications/coherentprob/
+
+

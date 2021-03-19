@@ -1,12 +1,11 @@
-# Higher Criticism 
+# Causal Inference 
 
+*Rubin causal model (RCM), also known as the Neyman–Rubin causal model,[1] is an approach to the statistical analysis of cause and effect based on the framework of potential outcomes For example, a person would have a particular income at age 40 if he had attended college, whereas he would have a different income at age 40 if he had not attended college. To measure the causal effect of going to college for this person, we need to compare the outcome for the same individual in both alternative futures. Since it is impossible to see both potential outcomes at once, one of the potential outcomes is always missing. This dilemma is the "fundamental problem of causal inference" Because of the fundamental problem of causal inference, unit-level causal effects cannot be directly observed. However, randomized experiments allow for the estimation of population-level causal effects.[5] A randomized experiment assigns people randomly to treatments: college or no college. Because of this random assignment, the groups are (on average) equivalent, and the difference in income at age 40 can be attributed to the college assignment since that was the only difference between the groups. An estimate of the average causal effect (also referred to as the average treatment effect) can then be obtained by computing the difference in means between the treated (college-attending) and control (not-college-attending) samples. In many circumstances, however, randomized experiments are not possible due to ethical or practical concerns. In such scenarios there is a non-random assignment mechanism. This is the case for the example of college attendance: people are not randomly assigned to attend college. Rather, people may choose to attend college based on their financial situation, parents' education, and so on. Many statistical methods have been developed for causal inference, such as propensity score matching. These methods attempt to correct for the assignment mechanism by finding control units similar to treatment units.*
 
-Comes from the needs of Large Scale Inference - testing for effects in the age of high content screening. See 
-*Empirical Bayes Methods for Estimation, Testing and Prediction. B. Efron*
+*The Rubin causal model has also been connected to instrumental variables (Angrist, Imbens, and Rubin, 1996)[6] and other techniques for causal inference. For more on the connections between the Rubin causal model, structural equation modeling, and other statistical methods for causal inference, see Morgan and Winship (2007).[7]*
 
-Donoho
-https://www.jstor.org/stable/pdf/24780402.pdf?refreqid=excelsior%3A98f50337ba4fabafd7b1c9f081ee1f98
-
-Efron
-https://statweb.stanford.edu/~ckirby/brad/LSI/monograph_CUP.pdf
-
+Counterfactuals and Causal Inference: Methods and Principles for Social Research By Stephen E. Morgan and Christopher Winship
+Three distinct and complementary strategies for causal inference: 
+- 1. conditioning on other potential variables that could affect the outcome, as in regression and matching analysis; 
+- 2. using appropriate exogenous variables as instrumental variables; and 
+- 3. establishing an “isolated and exhaustive” mechanism that links the outcome variable to the causal variable of interest.

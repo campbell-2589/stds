@@ -1,11 +1,38 @@
-# Random Effects and Mixed Models
+# Higher Criticism 
 
 
-## Crossed versus nested random effects.
+Comes from the needs of Large Scale Inference - testing for effects in the age of high content screening. See 
+*Empirical Bayes Methods for Estimation, Testing and Prediction. B. Efron*
 
-How do they differ and how are they specified correctly in lme4 and in JAGS / Stan?
+Donoho
+Higher Criticism for Large-Scale Inference, Especially for Rare and Weak Effects
+Author(s): David Donoho and Jiashun Jin
+https://www.jstor.org/stable/pdf/24780402.pdf?refreqid=excelsior%3A98f50337ba4fabafd7b1c9f081ee1f98
 
-## Very Large Number of RE's
+$HC^{*}$ can be connected with the maximum of a standardized empirical process; see
+HIGHER CRITICISM FOR DETECTING SPARSE HETEROGENEOUS MIXTURES By David Donoho and Jiashun Jin
 
-https://arxiv.org/abs/1610.08088
+Efron
+https://statweb.stanford.edu/~ckirby/brad/LSI/monograph_CUP.pdf
 
+
+
+1. Hong Zhang, Jiashun Jin and Zheyang Wu. "Distributions and Statistical Power of Optimal Signal-Detection Methods In Finite Cases", submitted.
+
+
+3. Li, Jian; Siegmund, David. "Higher criticism: p-values and criticism". Annals of Statistics 43 (2015).
+
+Software 
+
+```{r}
+if(!require(SetTest)){install.packages( "SetTest",dependencies = TRUE) }
+
+pval.test = runif(10)
+test.hc(pval.test, M=diag(10), k0=1, k1=10)
+test.hc(pval.test, M=diag(10), k0=1, k1=10, LS = TRUE)
+test.hc(pval.test, M=diag(10), k0=1, k1=10, ZW = TRUE)
+#When the input are statistics#
+stat.test = rnorm(20)
+p.test = 2*(1 - pnorm(abs(stat.test)))
+test.hc(p.test, M=diag(20), k0=1, k1=10)
+```

@@ -1,0 +1,359 @@
+--- 
+title: "Selected Topics In Data Science"
+author: "Bruce Campbell"
+date: "`r Sys.Date()`"
+#output: pdf_document
+#documentclass: book
+#bibliography:
+#- book.bib
+#- packages.bib
+#biblio-style: apalike
+github-repo: "brucebcampbell/stds"
+link-citations: yes
+description: This work is a series of topics the author found interesting and decided
+  to write about.
+site: bookdown::bookdown_site
+output:
+  bookdown::pdf_book:
+    latex_engine: xelatex
+    fig_caption: yes
+    toc: false
+    citation_package: natbib
+#    includes:
+#      before_body: frontpage.tex
+#      after_body: after_body.tex
+#      in_header: preamble.tex
+fontsize: 11pt
+linestretch: 1.2
+documentclass: book
+bibliography: [packages.bib,book.bib]
+#biblio-style: [plainnatnew.bst]
+---
+
+# Preface 
+
+This is the first installment on my promise to elucidate less popular topics in statistics and machine learning. I wrote this as a way to solidify my understanding of some of the topics that are treated here. Hopefully others will find value here. 
+
+<!--chapter:end:index.Rmd-->
+
+# Introduction {#intro}
+
+“Where must we go, we who wander this wasteland, in search of our better selves.” -The First History of Man
+
+This is a living book. It's under development. We are using the **bookdown** package [@R-bookdown] in this book, which was built on top of R Markdown and **knitr** [@xie2015].
+
+<!--chapter:end:intro.Rmd-->
+
+# Causal Inference 
+
+*Rubin causal model (RCM), also known as the Neyman–Rubin causal model,[1] is an approach to the statistical analysis of cause and effect based on the framework of potential outcomes For example, a person would have a particular income at age 40 if he had attended college, whereas he would have a different income at age 40 if he had not attended college. To measure the causal effect of going to college for this person, we need to compare the outcome for the same individual in both alternative futures. Since it is impossible to see both potential outcomes at once, one of the potential outcomes is always missing. This dilemma is the "fundamental problem of causal inference" Because of the fundamental problem of causal inference, unit-level causal effects cannot be directly observed. However, randomized experiments allow for the estimation of population-level causal effects.[5] A randomized experiment assigns people randomly to treatments: college or no college. Because of this random assignment, the groups are (on average) equivalent, and the difference in income at age 40 can be attributed to the college assignment since that was the only difference between the groups. An estimate of the average causal effect (also referred to as the average treatment effect) can then be obtained by computing the difference in means between the treated (college-attending) and control (not-college-attending) samples. In many circumstances, however, randomized experiments are not possible due to ethical or practical concerns. In such scenarios there is a non-random assignment mechanism. This is the case for the example of college attendance: people are not randomly assigned to attend college. Rather, people may choose to attend college based on their financial situation, parents' education, and so on. Many statistical methods have been developed for causal inference, such as propensity score matching. These methods attempt to correct for the assignment mechanism by finding control units similar to treatment units.*
+
+*The Rubin causal model has also been connected to instrumental variables (Angrist, Imbens, and Rubin, 1996)[6] and other techniques for causal inference. For more on the connections between the Rubin causal model, structural equation modeling, and other statistical methods for causal inference, see Morgan and Winship (2007).[7]*
+
+Counterfactuals and Causal Inference: Methods and Principles for Social Research By Stephen E. Morgan and Christopher Winship
+Three distinct and complementary strategies for causal inference: 
+- 1. conditioning on other potential variables that could affect the outcome, as in regression and matching analysis; 
+- 2. using appropriate exogenous variables as instrumental variables; and 
+- 3. establishing an “isolated and exhaustive” mechanism that links the outcome variable to the causal variable of interest.
+
+<!--chapter:end:causal_analysis.Rmd-->
+
+# On Model Averaging 
+
+Recall that we can break down model error into the bias an variance $bias(\hat{Y})= E[\hat{Y}-E[Y]]$
+
+If we are averaging models $i=1, \cdots ,k$ then 
+
+$\operatorname{MSE}\left(\hat{Y}_{i}\right)=\left\{\operatorname{bias}\left(\hat{Y}_{i}\right)\right\}^{2}+\operatorname{var}\left(\hat{Y}_{i}\right)$
+
+
+<!--chapter:end:model_averaging.Rmd-->
+
+# Sensitivity Analysis and Shapley Values
+
+Global sensitivity analysis measures the importance of input variables to a function. This is an important task in quantifying the uncertainty in which target variables can be predicted from their inputs. Sobol indices [@sobolindices] are a popular approach to this. It turns out that there's a relationship between Sobol indices and Shapley values. We explore this relationship here and demonstrate their effectiveness on some linear and non-linear models. 
+
+## Relationship between Sobol indices and Shapley values 
+
+Shapley values are based on $f(x)-E[f(x)]$ while Sobol indices decompose output variance into fractions contributed by the inputs. The Sobol index is a global measure of feature importance while Shapley values focus on local explanations although we could combine local Shapley values to achieve a global importance measure. Sobol indices are based on expectations and can be used for features not included in the model / function of interest. In this way we could query for important features correlated with those that the model does use.  
+
+
+## CRAN sensitivity package
+
+
+```{r,message=FALSE}
+library(ggplot2)
+library(pander)
+if(!require(sensitivity)){
+    install.packages("sensitivity")
+    library(sensitivity)
+}
+
+
+
+
+```
+
+
+Standardized Regression Coefficients (SRC), or the Standardized Rank Regression Coefficients (SRRC), which are sensitivity indices based on linear or monotonic assumptions in the case of independent factors.
+
+```{r}
+n <- 100
+X <- data.frame(X1 = runif(n, 0.5, 1.5),
+                X2 = runif(n, 1.5, 4.5),
+                X3 = runif(n, 4.5, 13.5))
+
+# linear model : Y = X1 + X2 + X3
+
+y <- with(X, X1 + X2 + X3)
+
+
+Z <- src(X, y, rank = FALSE, logistic = FALSE, nboot = 0, conf = 0.95)
+
+pander(Z$SRC,caption = "Standardized Regression Coefficients ")
+
+ggplot(Z, ylim = c(-1,1))+ggtitle("Standardized Regression Coefficients")
+
+```
+
+
+```{r}
+y <- with(X, X1 + X2 + X3)
+y <- y + rnorm(nrow(X),0,1/2)
+df<- data.frame(cbind(X,y))
+
+Z <- src(X, y, rank = FALSE, logistic = FALSE, nboot = 0, conf = 0.95)
+
+pander(Z$SRC,caption = "Standardized Regression Coefficients ")
+
+ggplot(Z, ylim = c(-1,1))+ggtitle("Standardized Regression Coefficients")
+
+#lm.fit = lm(y ~ X1+X2+X3,data = df)
+#summary(lm.fit)
+#attach(df)
+#plot(y, X1+X2+X3)
+```
+
+We see how the importance of X3 is ranked above X2 and likewise X2 is more important than X1. This is by design of the simulated data set. The standardized regression coefficients (beta coefficients) are calculated from that has been standardized, let's normalize and calculate the regression to see if indeed that is the case. 
+
+```{r}
+dfs<- data.frame(scale(df,center = TRUE,scale = TRUE))
+lm.fit = lm(y ~ X1+X2+X3,data = dfs)
+summary(lm.fit)
+
+```
+
+We see that the values are very close.
+
+## Partial Correlation Coefficients
+
+```{r}
+
+x <- pcc(X, y, nboot = 100)
+print(x)
+```
+
+
+## Sobol indices for deterministic function and for model 
+
+```{r}
+y.fun <- function(X) {
+  
+  X1<- X[,1]
+  X2<- X[,2]
+  X3<- X[,3]
+  
+  X1+X2+X3
+}
+
+yhat.fun<-function(X,lm)
+{
+  X1<- X[,1]
+  X2<- X[,2]
+  X3<- X[,3]
+  
+  yhat <- predict(lm.fit,data.frame(X1=X1,X2=X2,X3=X3))
+  return(yhat)
+}
+
+nboot = 1000
+
+x <- sobol(model = y.fun, X[1:50,], X[51:100,], order = 3, nboot = nboot)
+S.sobol <- x$S
+pander(S.sobol)
+#yhat.fun(data.frame(X1=1,X2=2,X3=3),lm.fit)
+
+x <- sobol(model = yhat.fun,X[1:50,], X[51:100,], order = 3, nboot = nboot)
+S.sobol <- x$S
+pander(S.sobol)
+```
+
+
+
+
+
+
+<!--chapter:end:sensitivity_analysis.Rmd-->
+
+# Poincare Embedding
+
+
+## Embeddings
+
+*The Poincaré Embedding is concerned with the problem of learning hierarchical structure on the dataset. Phylogenetic tree or the tree of hypernymy are the examples of hierarchical structure dataset. The embedding space is a Poincaré ball, which is an unit ball equipped with poincaré distance. An advantage using Poincaré space compared to the Euclidean space as embedding space is that this space preserve tree-shaped structure well in relatively low dimension. This is because poincaré distance is intuitively continuous version of distance on tree-shaped dataset. We can take advantage of this property to provide efficient embeddings with comparably less dimensionality.*
+
+See [https://github.com/hwchang1201/poincare.embeddings/]
+
+[@DBLP:journals/corr/NickelK17]
+
+[@DBLP:journals/corr/abs-1806-03417]
+
+```{r}
+install.packages("remotes")
+remotes::install_github("hwchang1201/poincare.embeddings", upgrade = "never")
+install.packages('data.tree')
+library(yaml)
+library(data.tree)
+# defining tree structured dataset.
+acme_treeDataset <- Node$new("Acme Inc.")
+  accounting <- acme_treeDataset$AddChild("Accounting")
+    software <- accounting$AddChild("New Software")
+    standards <- accounting$AddChild("New Accounting Standards")
+  research <- acme_treeDataset$AddChild("Research")
+    newProductLine <- research$AddChild("New Product Line")
+    newLabs <- research$AddChild("New Labs")
+  it <- acme_treeDataset$AddChild("IT")
+    outsource <- it$AddChild("Outsource")
+    agile <- it$AddChild("Go agile")
+    goToR <- it$AddChild("Switch to R")
+
+print(acme_treeDataset)
+```
+
+```{r}
+# loading package "poincare.embeddings"
+library(poincare.embeddings)
+
+# use example dataset
+# 1. use "toy"
+toy_yaml <- yaml::yaml.load(toy)
+toy_tree <- data.tree::as.Node(toy_yaml)
+emb <- poincareEmbeddings(toy_tree, theta_dim = 2, N_epoch = 200, lr = 0.05, n_neg = 10)
+# 2. use "statistics"
+statistics_yaml <- yaml::yaml.load(statistics)
+statistics_tree <- data.tree::as.Node(statistics_yaml)
+emb <- poincareEmbeddings(statistics_tree, theta_dim = 2, N_epoch = 200, lr = 0.05, n_neg = 10)
+# 3. use "statistics_adv"
+statistics_adv_yaml <- yaml::yaml.load(statistics_adv)
+statistics_adv_tree <- data.tree::as.Node(statistics_adv_yaml)
+emb <- poincareEmbeddings(statistics_adv_tree, theta_dim = 2, N_epoch = 200, lr = 0.05, n_neg = 10)
+
+print(paste("The ranking of the poincare embedding :", emb$rank))
+print(paste("The mean average precision of the poincare embedding :", emb$map))
+```
+
+
+# Multirelational
+
+https://github.com/ibalazevic/multirelational-poincare
+
+
+GeomStats
+https://geomstats.github.io/geomstats.github.io/05_embedding_graph_structured_data_h2.html
+
+
+
+<!--chapter:end:poincare_embedding_trees.Rmd-->
+
+# Random Effects and Mixed Models
+
+
+## Crossed versus nested random effects.
+
+How do they differ and how are they specified correctly in lme4 and in JAGS / Stan?
+
+## Very Large Number of RE's
+
+https://arxiv.org/abs/1610.08088
+
+
+<!--chapter:end:random_effects.Rmd-->
+
+# Propensity Score Matching 
+
+
+## Caliper 
+
+Putting constraints on matching can reduce bias [@10.1093/aje/kwt212]. 
+
+*Matching on the propensity score is widely used to estimate the effect of an exposure in observational studies. However, the quality of the matches can be affected by decisions made during the matching process, particularly the order in which subjects are selected for matching and the maximum permitted difference between matched subjects (the “caliper”). This study used simulations to explore the effects of these decisions on both the imbalance of covariates and the closeness of matching, while allowing the numbers of potential matches and strengths of association between the confounding variable and the exposure to vary. It was found that, without a caliper, substantial bias was possible, particularly with a relatively small reservoir of potential matches and strong confounder-exposure association. Use of the recommended caliper reduced the bias considerably, but bias remained if subjects were selected by increasing or decreasing propensity score. A tighter caliper led to greatly reduced bias and closer matches, although some subjects could not be matched. This study suggests that a narrow caliper can improve the performance of propensity score matching. In situations where it is impossible to find appropriate matches for all exposed subjects, it is better to select subjects in order of the best available matches, rather than increasing or decreasing the propensity score.*
+
+
+<!--chapter:end:propensity_score_matching.Rmd-->
+
+# Higher Criticism 
+
+
+Comes from the needs of Large Scale Inference - testing for effects in the age of high content screening. See 
+*Empirical Bayes Methods for Estimation, Testing and Prediction. B. Efron*
+
+Donoho
+Higher Criticism for Large-Scale Inference, Especially for Rare and Weak Effects
+Author(s): David Donoho and Jiashun Jin
+https://www.jstor.org/stable/pdf/24780402.pdf?refreqid=excelsior%3A98f50337ba4fabafd7b1c9f081ee1f98
+
+$HC^{*}$ can be connected with the maximum of a standardized empirical process; see
+HIGHER CRITICISM FOR DETECTING SPARSE HETEROGENEOUS MIXTURES By David Donoho and Jiashun Jin
+
+Efron
+https://statweb.stanford.edu/~ckirby/brad/LSI/monograph_CUP.pdf
+
+
+
+1. Hong Zhang, Jiashun Jin and Zheyang Wu. "Distributions and Statistical Power of Optimal Signal-Detection Methods In Finite Cases", submitted.
+
+
+3. Li, Jian; Siegmund, David. "Higher criticism: p-values and criticism". Annals of Statistics 43 (2015).
+
+Software 
+
+```{r}
+if(!require(SetTest)){install.packages( "SetTest",dependencies = TRUE) }
+
+pval.test = runif(10)
+test.hc(pval.test, M=diag(10), k0=1, k1=10)
+test.hc(pval.test, M=diag(10), k0=1, k1=10, LS = TRUE)
+test.hc(pval.test, M=diag(10), k0=1, k1=10, ZW = TRUE)
+#When the input are statistics#
+stat.test = rnorm(20)
+p.test = 2*(1 - pnorm(abs(stat.test)))
+test.hc(p.test, M=diag(20), k0=1, k1=10)
+```
+
+<!--chapter:end:higher_criticism.Rmd-->
+
+# Introduction to Normalizing Flows
+
+
+## Variational Inference With NF
+
+*Variational inference now lies at the core of large-scale topic models of text (Hoffman et al., 2013), provides the state-of-the-art in semi-supervised classification (Kingma et al., 2014), drives the models that currently produce the most realistic generative models of images (Gregor et al., 2014; Rezende et al., 2014), and are a default Proceedings of the 32 nd International Conference on Machine Learning, Lille, France, 2015. JMLR: W&CP volume 37. Copyright 2015 by the author(s). tool for the understanding of many physical and chemical systems. Despite these successes and ongoing advances, there are a number of disadvantages of variational methods that limit their power and hamper their wider adoption as a default method for statistical inference. It is one of these limitations, the choice of posterior approximation, that we address in this paper*
+
+[http://proceedings.mlr.press/v37/rezende15.pdf]
+
+*Generative modeling loosely refers to building a model of data, for instance p(image), that we can sample from. This is in contrast to discriminative modeling, such as regression or classification, which tries to estimate conditional distributions such as p(class | image).*
+
+See also
+
+https://blog.evjang.com/2018/01/nf1.html
+
+https://deepgenerativemodels.github.io/notes/flow/
+
+<!--chapter:end:normalizing_flows.Rmd-->
+
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+
+<!--chapter:end:references.Rmd-->
+
