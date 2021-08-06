@@ -56,6 +56,26 @@ Three distinct and complementary strategies for causal inference:
 - 2. using appropriate exogenous variables as instrumental variables; and 
 - 3. establishing an “isolated and exhaustive” mechanism that links the outcome variable to the causal variable of interest.
 
+
+
+
+
+# spike-and-slab regression 
+
+Bayesian variable selection technique ( particularly useful when the number of potential covariates is larger than the number of samples). 
+
+Mitchell & Beauchamp (1988)
+Madigan & Raftery (1994) 
+George & McCulloch (1997)
+Ishwaran & Rao (2005).*
+
+
+# Nowcasting 
+
+https://www.sr-sv.com/nowcasting-for-financial-markets/
+
+https://cran.r-project.org/web/packages/nowcasting/nowcasting.pdf
+
 <!--chapter:end:causal_analysis.Rmd-->
 
 # On Model Averaging 
