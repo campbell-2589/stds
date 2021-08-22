@@ -1,5 +1,6 @@
 book_filename: "topics_in_data_science"
-rmd_files: ["index.Rmd",  "intro.Rmd","causal_analysis.Rmd","model_averaging.Rmd","sensitivity_analysis.Rmd","poincare_embedding_trees.Rmd","random_effects.Rmd","propensity_score_matching.Rmd" ,"higher_criticism.Rmd","normalizing_flows.Rmd","references.Rmd"]
+#rmd_files: ["index.Rmd",  "intro.Rmd","causal_analysis.Rmd","model_averaging.Rmd","sensitivity_analysis.Rmd","poincare_embedding_trees.Rmd","random_effects.Rmd","propensity_score_matching.Rmd" ,"higher_criticism.Rmd","normalizing_flows.Rmd","references.Rmd"]
+rmd_files: ["index.Rmd","intro.Rmd","causal_analysis.Rmd","higher_criticism.Rmd","mlops.Rmd","poincare_embedding_trees.Rmd","random_effects.Rmd","sensitivity_analysis.Rmd","cognitive_biases.Rmd","index.Rmd","model_averaging.Rmd","propensity_score_matching.Rmd","hierarchical_time_series.Rmd","normalizing_flows.Rmd","prose.Rmd","Robust_estimation_by_stochastic_approximation.Rmd","references.Rmd"]
 delete_merged_file: true
 language:
   ui:

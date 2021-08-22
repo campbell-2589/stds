@@ -19,10 +19,10 @@ output:
     fig_caption: yes
     toc: false
     citation_package: natbib
-#    includes:
+    includes:
 #      before_body: frontpage.tex
 #      after_body: after_body.tex
-#      in_header: preamble.tex
+      in_header: preamble.tex
 fontsize: 11pt
 linestretch: 1.2
 documentclass: book
