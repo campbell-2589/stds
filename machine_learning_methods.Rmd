@@ -1,8 +1,7 @@
-# On Model Averaging 
+# On Model Averaging
 
 Recall that we can break down model error into the bias an variance $bias(\hat{Y})= E[\hat{Y}-E[Y]]$
 
-If we are averaging models $i=1, \cdots ,k$ then 
+If we are averaging models $i=1, \cdots ,k$ then
 
 $\operatorname{MSE}\left(\hat{Y}_{i}\right)=\left\{\operatorname{bias}\left(\hat{Y}_{i}\right)\right\}^{2}+\operatorname{var}\left(\hat{Y}_{i}\right)$
-

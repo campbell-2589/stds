@@ -1,6 +1,0 @@
-# Cognitive Biases
-
-*People typically consider a limited number of promising ideas in order to manage the cognitive burden of searching through all possible ideas, but this can lead them to accept adequate solutions without considering potentially superior alternatives. Here we show that people systematically default to searching for additive transformations, and consequently overlook subtractive transformations.*
-
-Adams, G.S., Converse, B.A., Hales, A.H. et al. People systematically overlook subtractive changes. Nature 592, 258–261 (2021). https://doi.org/10.1038/s41586-021-03380-y
-

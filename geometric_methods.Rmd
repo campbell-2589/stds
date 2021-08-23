@@ -63,5 +63,3 @@ https://github.com/ibalazevic/multirelational-poincare
 
 GeomStats
 https://geomstats.github.io/geomstats.github.io/05_embedding_graph_structured_data_h2.html
-
-

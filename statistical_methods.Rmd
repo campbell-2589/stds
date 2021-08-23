@@ -1,0 +1,104 @@
+
+## Causal Inference
+
+*Rubin causal model (RCM), also known as the Neyman–Rubin causal model,[1] is an approach to the statistical analysis of cause and effect based on the framework of potential outcomes For example, a person would have a particular income at age 40 if he had attended college, whereas he would have a different income at age 40 if he had not attended college. To measure the causal effect of going to college for this person, we need to compare the outcome for the same individual in both alternative futures. Since it is impossible to see both potential outcomes at once, one of the potential outcomes is always missing. This dilemma is the "fundamental problem of causal inference" Because of the fundamental problem of causal inference, unit-level causal effects cannot be directly observed. However, randomized experiments allow for the estimation of population-level causal effects.[5] A randomized experiment assigns people randomly to treatments: college or no college. Because of this random assignment, the groups are (on average) equivalent, and the difference in income at age 40 can be attributed to the college assignment since that was the only difference between the groups. An estimate of the average causal effect (also referred to as the average treatment effect) can then be obtained by computing the difference in means between the treated (college-attending) and control (not-college-attending) samples. In many circumstances, however, randomized experiments are not possible due to ethical or practical concerns. In such scenarios there is a non-random assignment mechanism. This is the case for the example of college attendance: people are not randomly assigned to attend college. Rather, people may choose to attend college based on their financial situation, parents' education, and so on. Many statistical methods have been developed for causal inference, such as propensity score matching. These methods attempt to correct for the assignment mechanism by finding control units similar to treatment units.*
+
+*The Rubin causal model has also been connected to instrumental variables (Angrist, Imbens, and Rubin, 1996)[6] and other techniques for causal inference. For more on the connections between the Rubin causal model, structural equation modeling, and other statistical methods for causal inference, see Morgan and Winship (2007).[7]*
+
+Counterfactuals and Causal Inference: Methods and Principles for Social Research By Stephen E. Morgan and Christopher Winship
+Three distinct and complementary strategies for causal inference:
+- 1. conditioning on other potential variables that could affect the outcome, as in regression and matching analysis;
+- 2. using appropriate exogenous variables as instrumental variables; and
+- 3. establishing an “isolated and exhaustive” mechanism that links the outcome variable to the causal variable of interest.
+
+## spike-and-slab regression
+
+Bayesian variable selection technique ( particularly useful when the number of potential covariates is larger than the number of samples).
+
+Mitchell & Beauchamp (1988)
+Madigan & Raftery (1994)
+George & McCulloch (1997)
+Ishwaran & Rao (2005).*
+
+
+## Nowcasting
+
+https://www.sr-sv.com/nowcasting-for-financial-markets/
+
+https://cran.r-project.org/web/packages/nowcasting/nowcasting.pdf
+
+## Higher Criticism
+
+Comes from the needs of Large Scale Inference - testing for effects in the age of high content screening. See
+*Empirical Bayes Methods for Estimation, Testing and Prediction. B. Efron*
+
+Donoho
+Higher Criticism for Large-Scale Inference, Especially for Rare and Weak Effects
+Author(s): David Donoho and Jiashun Jin
+https://www.jstor.org/stable/pdf/24780402.pdf?refreqid=excelsior%3A98f50337ba4fabafd7b1c9f081ee1f98
+
+$HC^{*}$ can be connected with the maximum of a standardized empirical process; see
+HIGHER CRITICISM FOR DETECTING SPARSE HETEROGENEOUS MIXTURES By David Donoho and Jiashun Jin
+
+Efron
+https://statweb.stanford.edu/~ckirby/brad/LSI/monograph_CUP.pdf
+
+
+1. Hong Zhang, Jiashun Jin and Zheyang Wu. "Distributions and Statistical Power of Optimal Signal-Detection Methods In Finite Cases", submitted.
+
+3. Li, Jian; Siegmund, David. "Higher criticism: p-values and criticism". Annals of Statistics 43 (2015).
+
+Software
+
+```{r}
+if(!require(SetTest)){install.packages( "SetTest",dependencies = TRUE) }
+pval.test = runif(10)
+test.hc(pval.test, M=diag(10), k0=1, k1=10)
+test.hc(pval.test, M=diag(10), k0=1, k1=10, LS = TRUE)
+test.hc(pval.test, M=diag(10), k0=1, k1=10, ZW = TRUE)
+#When the input are statistics#
+stat.test = rnorm(20)
+p.test = 2*(1 - pnorm(abs(stat.test)))
+test.hc(p.test, M=diag(20), k0=1, k1=10)
+```
+
+# Cognitive Biases
+
+*People typically consider a limited number of promising ideas in order to manage the cognitive burden of searching through all possible ideas, but this can lead them to accept adequate solutions without considering potentially superior alternatives. Here we show that people systematically default to searching for additive transformations, and consequently overlook subtractive transformations.*
+
+Adams, G.S., Converse, B.A., Hales, A.H. et al. People systematically overlook subtractive changes. Nature 592, 258–261 (2021). https://doi.org/10.1038/s41586-021-03380-y
+
+
+# Hierarchical and grouped time series
+
+https://robjhyndman.com/software/
+
+## Reconciled Distributional Forecasts
+
+https://otexts.com/fpp3/rec-prob.html
+
+SO question
+https://stats.stackexchange.com/questions/514050/how-to-add-coherent-distributions-from-reconciled-distributional-forecasts
+
+https://github.com/anastasiospanagiotelis/ProbReco
+
+
+https://robjhyndman.com/publications/coherentprob/
+
+
+# Propensity Score Matching : Caliper
+
+Putting constraints on matching can reduce bias [@10.1093/aje/kwt212].
+
+*Matching on the propensity score is widely used to estimate the effect of an exposure in observational studies. However, the quality of the matches can be affected by decisions made during the matching process, particularly the order in which subjects are selected for matching and the maximum permitted difference between matched subjects (the “caliper”). This study used simulations to explore the effects of these decisions on both the imbalance of covariates and the closeness of matching, while allowing the numbers of potential matches and strengths of association between the confounding variable and the exposure to vary. It was found that, without a caliper, substantial bias was possible, particularly with a relatively small reservoir of potential matches and strong confounder-exposure association. Use of the recommended caliper reduced the bias considerably, but bias remained if subjects were selected by increasing or decreasing propensity score. A tighter caliper led to greatly reduced bias and closer matches, although some subjects could not be matched. This study suggests that a narrow caliper can improve the performance of propensity score matching. In situations where it is impossible to find appropriate matches for all exposed subjects, it is better to select subjects in order of the best available matches, rather than increasing or decreasing the propensity score.*
+
+# Random Effects and Mixed Models
+
+
+## Crossed versus nested random effects.
+
+How do they differ and how are they specified correctly in lme4 and in JAGS / Stan?
+
+## Very Large Number of RE's
+
+https://arxiv.org/abs/1610.08088

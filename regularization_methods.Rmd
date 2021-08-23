@@ -1,0 +1,5 @@
+# SA and M-estimators
+
+
+
+R. Martin and C. Masreliez, "Robust estimation via stochastic approximation," in IEEE Transactions on Information Theory, vol. 21, no. 3, pp. 263-271, May 1975, doi: 10.1109/TIT.1975.1055386.

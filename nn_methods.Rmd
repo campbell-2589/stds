@@ -13,4 +13,4 @@ See also
 
 https://blog.evjang.com/2018/01/nf1.html
 
-https://deepgenerativemodels.github.io/notes/flow/
+https://deepgenerativemodels.github.io/notes/flow
