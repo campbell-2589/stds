@@ -1,3 +1,4 @@
+# Statistical Methods
 
 ## Causal Inference
 
@@ -44,6 +45,8 @@ Efron
 https://statweb.stanford.edu/~ckirby/brad/LSI/monograph_CUP.pdf
 
 
+## Higher Criticism
+
 1. Hong Zhang, Jiashun Jin and Zheyang Wu. "Distributions and Statistical Power of Optimal Signal-Detection Methods In Finite Cases", submitted.
 
 3. Li, Jian; Siegmund, David. "Higher criticism: p-values and criticism". Annals of Statistics 43 (2015).
@@ -62,14 +65,13 @@ p.test = 2*(1 - pnorm(abs(stat.test)))
 test.hc(p.test, M=diag(20), k0=1, k1=10)
 ```
 
-# Cognitive Biases
+## Cognitive Biases
 
 *People typically consider a limited number of promising ideas in order to manage the cognitive burden of searching through all possible ideas, but this can lead them to accept adequate solutions without considering potentially superior alternatives. Here we show that people systematically default to searching for additive transformations, and consequently overlook subtractive transformations.*
 
 Adams, G.S., Converse, B.A., Hales, A.H. et al. People systematically overlook subtractive changes. Nature 592, 258–261 (2021). https://doi.org/10.1038/s41586-021-03380-y
 
-
-# Hierarchical and grouped time series
+## Hierarchical and grouped time series
 
 https://robjhyndman.com/software/
 
@@ -86,19 +88,20 @@ https://github.com/anastasiospanagiotelis/ProbReco
 https://robjhyndman.com/publications/coherentprob/
 
 
-# Propensity Score Matching : Caliper
+## Random Effects and Mixed Models
+
+### Crossed versus nested random effects.
+
+How do they differ and how are they specified correctly in lme4 and in JAGS / Stan?
+
+### Very Large Number of RE's
+
+https://arxiv.org/abs/1610.08088
+
+
+## Propensity Score Matching : Caliper
 
 Putting constraints on matching can reduce bias [@10.1093/aje/kwt212].
 
 *Matching on the propensity score is widely used to estimate the effect of an exposure in observational studies. However, the quality of the matches can be affected by decisions made during the matching process, particularly the order in which subjects are selected for matching and the maximum permitted difference between matched subjects (the “caliper”). This study used simulations to explore the effects of these decisions on both the imbalance of covariates and the closeness of matching, while allowing the numbers of potential matches and strengths of association between the confounding variable and the exposure to vary. It was found that, without a caliper, substantial bias was possible, particularly with a relatively small reservoir of potential matches and strong confounder-exposure association. Use of the recommended caliper reduced the bias considerably, but bias remained if subjects were selected by increasing or decreasing propensity score. A tighter caliper led to greatly reduced bias and closer matches, although some subjects could not be matched. This study suggests that a narrow caliper can improve the performance of propensity score matching. In situations where it is impossible to find appropriate matches for all exposed subjects, it is better to select subjects in order of the best available matches, rather than increasing or decreasing the propensity score.*
 
-# Random Effects and Mixed Models
-
-
-## Crossed versus nested random effects.
-
-How do they differ and how are they specified correctly in lme4 and in JAGS / Stan?
-
-## Very Large Number of RE's
-
-https://arxiv.org/abs/1610.08088

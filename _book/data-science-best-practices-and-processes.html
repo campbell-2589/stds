@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Data Science Best Practices and Processes | Selected Topics In Data Science</title>
+  <meta name="description" content="This work is a series of topics the author found interesting and decided to write about." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Data Science Best Practices and Processes | Selected Topics In Data Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This work is a series of topics the author found interesting and decided to write about." />
+  <meta name="github-repo" content="brucebcampbell/stds" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Data Science Best Practices and Processes | Selected Topics In Data Science" />
+  
+  <meta name="twitter:description" content="This work is a series of topics the author found interesting and decided to write about." />
+  
+
+<meta name="author" content="Bruce Campbell" />
+
+
+<meta name="date" content="2021-08-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="statistical-methods.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Selected Topics In Data Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> before_body: frontpage.tex</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html"><i class="fa fa-check"></i><b>3</b> Data Science Best Practices and Processes</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#code-of-conduct"><i class="fa fa-check"></i><b>3.1</b> Code of Conduct</a></li>
+<li class="chapter" data-level="3.2" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#ethics"><i class="fa fa-check"></i><b>3.2</b> Ethics</a></li>
+<li class="chapter" data-level="3.3" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#project-philosophy"><i class="fa fa-check"></i><b>3.3</b> Project Philosophy</a></li>
+<li class="chapter" data-level="3.4" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#project-planning-and-accounting"><i class="fa fa-check"></i><b>3.4</b> Project Planning and Accounting</a></li>
+<li class="chapter" data-level="3.5" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#agile"><i class="fa fa-check"></i><b>3.5</b> Agile</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#the-agile-manifesto"><i class="fa fa-check"></i><b>3.5.1</b> The Agile Manifesto</a></li>
+<li class="chapter" data-level="3.5.2" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#agile-data-science-manifesto"><i class="fa fa-check"></i><b>3.5.2</b> Agile Data Science Manifesto</a></li>
+<li class="chapter" data-level="3.5.3" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#sprints"><i class="fa fa-check"></i><b>3.5.3</b> Sprints</a></li>
+<li class="chapter" data-level="3.5.4" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#planning-estimation"><i class="fa fa-check"></i><b>3.5.4</b> Planning &amp; Estimation</a></li>
+<li class="chapter" data-level="3.5.5" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#execution"><i class="fa fa-check"></i><b>3.5.5</b> Execution</a></li>
+<li class="chapter" data-level="3.5.6" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#demo"><i class="fa fa-check"></i><b>3.5.6</b> Demo</a></li>
+<li class="chapter" data-level="3.5.7" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#retrospectives"><i class="fa fa-check"></i><b>3.5.7</b> Retrospectives</a></li>
+<li class="chapter" data-level="3.5.8" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#open-time"><i class="fa fa-check"></i><b>3.5.8</b> Open Time</a></li>
+<li class="chapter" data-level="3.5.9" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#the-master-backlog-and-the-open-business-questions-list"><i class="fa fa-check"></i><b>3.5.9</b> The Master Backlog and the Open Business Questions List</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#statistical-analysis-vs.-machine-learning-and-r-vs.-python"><i class="fa fa-check"></i><b>3.6</b> Statistical Analysis vs. Machine Learning and R vs. Python</a></li>
+<li class="chapter" data-level="3.7" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#version-control"><i class="fa fa-check"></i><b>3.7</b> Version Control</a></li>
+<li class="chapter" data-level="3.8" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#git-fundamental-ideas"><i class="fa fa-check"></i><b>3.8</b> Git Fundamental Ideas</a></li>
+<li class="chapter" data-level="3.9" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#definition-of-done-for-data-science"><i class="fa fa-check"></i><b>3.9</b> Definition of Done for Data Science</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#workflow"><i class="fa fa-check"></i><b>3.9.1</b> Workflow</a></li>
+<li class="chapter" data-level="3.9.2" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#testing"><i class="fa fa-check"></i><b>3.9.2</b> Testing</a></li>
+<li class="chapter" data-level="3.9.3" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#data-validation"><i class="fa fa-check"></i><b>3.9.3</b> Data Validation</a></li>
+<li class="chapter" data-level="3.9.4" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#hardware"><i class="fa fa-check"></i><b>3.9.4</b> Hardware</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#languages"><i class="fa fa-check"></i><b>3.10</b> Languages</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#ides-vs-notebooks"><i class="fa fa-check"></i><b>3.10.1</b> IDE’s vs Notebooks</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#modern-devops"><i class="fa fa-check"></i><b>3.11</b> Modern devops</a></li>
+<li class="chapter" data-level="3.12" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#data-science-reading-list"><i class="fa fa-check"></i><b>3.12</b> Data Science Reading List</a><ul>
+<li class="chapter" data-level="3.12.1" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#big-data"><i class="fa fa-check"></i><b>3.12.1</b> Big Data</a></li>
+<li class="chapter" data-level="3.12.2" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#statistics-theory"><i class="fa fa-check"></i><b>3.12.2</b> Statistics Theory</a></li>
+<li class="chapter" data-level="3.12.3" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#statistics-applied"><i class="fa fa-check"></i><b>3.12.3</b> Statistics Applied</a></li>
+<li class="chapter" data-level="3.12.4" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#machine-learning"><i class="fa fa-check"></i><b>3.12.4</b> Machine Learning</a></li>
+<li class="chapter" data-level="3.12.5" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#core-competencies"><i class="fa fa-check"></i><b>3.12.5</b> Core Competencies</a></li>
+</ul></li>
+<li class="chapter" data-level="3.13" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#mlops---devops-applied-to-machine-learning-workflows"><i class="fa fa-check"></i><b>3.13</b> MLOps - devops applied to machine learning workflows</a><ul>
+<li class="chapter" data-level="3.13.1" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#development-platform"><i class="fa fa-check"></i><b>3.13.1</b> Development platform</a></li>
+<li class="chapter" data-level="3.13.2" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#versioning"><i class="fa fa-check"></i><b>3.13.2</b> Versioning</a></li>
+<li class="chapter" data-level="3.13.3" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#model-governance-only-certain-people-should-have-access-to-see-training-related-to-any-given-model-and-there-should-be-access-control-for-who-can-requestrejectapprove-transitions-between-deployment-stages-e.g.-dev-to-test-to-prod-in-the-model-registry."><i class="fa fa-check"></i><b>3.13.3</b> Model Governance: only certain people should have access to see training related to any given model, and there should be access control for who can request/reject/approve transitions between deployment stages (e.g. dev to test to prod) in the model registry.</a></li>
+<li class="chapter" data-level="3.13.4" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#deployments-deployment-can-be-many-things-but-in-this-post-i-consider-the-case-where-we-want-to-deploy-a-model-to-cloud-infrastructure-and-expose-an-api-which-enables-other-people-to-consume-and-use-the-model-i.e.-im-not-considering-cases-where-we-want-to-deploy-ml-models-into-embedded-systems.-efficient-model-deployments-on-appropriate-infrastructure-should"><i class="fa fa-check"></i><b>3.13.4</b> Deployments: deployment can be many things, but in this post I consider the case where we want to deploy a model to cloud infrastructure and expose an API, which enables other people to consume and use the model, i.e. I’m not considering cases where we want to deploy ML models into embedded systems. Efficient model deployments on appropriate infrastructure should:</a></li>
+<li class="chapter" data-level="3.13.5" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#feedback-we-need-to-feedback-information-to-the-model-on-how-well-it-is-performing.-why-typically-we-run-predictions-on-new-samples-where-we-do-not-yet-know-the-ground-truth.-as-we-learn-the-truth-however-we-need-to-inform-the-model-so-that-it-can-report-on-how-well-it-is-actually-doing."><i class="fa fa-check"></i><b>3.13.5</b> Feedback: we need to feedback information to the model on how well it is performing. Why? typically we run predictions on new samples where we do not yet know the ground truth. As we learn the truth, however, we need to inform the model, so that it can report on how well it is actually doing.</a></li>
+<li class="chapter" data-level="3.13.6" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#ab-testing-no-matter-how-solid-cross-validation-we-think-were-doing-we-never-know-how-the-model-will-perform-until-it-actually-gets-deployed.-it-should-be-easy-to-perform-ab-experiments-with-live-models-within-the-mlops-framework."><i class="fa fa-check"></i><b>3.13.6</b> A/B testing: no matter how solid cross-validation we think we’re doing, we never know how the model will perform until it actually gets deployed. It should be easy to perform A/B experiments with live models within the MLOps framework.</a></li>
+<li class="chapter" data-level="3.13.7" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#drift-detection-typically-the-longer-time-a-given-model-is-deployed-the-worse-it-becomes-as-circumstances-change-compared-to-the-time-of-training-the-model.-we-can-try-to-monitor-and-alert-on-these-different-circumstances-or-drifts-before-they-get-too-severe"><i class="fa fa-check"></i><b>3.13.7</b> Drift detection: typically the longer time a given model is deployed the worse it becomes as circumstances change compared to the time of training the model. We can try to monitor and alert on these different circumstances, or “drifts”, before they get too severe:</a></li>
+<li class="chapter" data-level="3.13.8" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#outlier-detection-if-a-deployed-model-receives-an-input-sample-which-is-significantly-different-from-anything-observed-during-training-we-can-try-to-identify-this-sample-as-a-potential-outlier-and-the-returned-prediction-should-be-marked-as-such-indicating-that-the-end-user-should-be-careful-in-trusting-the-prediction."><i class="fa fa-check"></i><b>3.13.8</b> Outlier detection: if a deployed model receives an input sample which is significantly different from anything observed during training, we can try to identify this sample as a potential outlier, and the returned prediction should be marked as such, indicating that the end-user should be careful in trusting the prediction.</a></li>
+<li class="chapter" data-level="3.13.9" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#interpretability-the-ml-deployments-should-support-endpoints-returning-the-explanation-of-our-prediction-e.g.-through-shap-values.-why-for-a-lot-of-use-cases-a-prediction-is-not-enough-and-the-end-user-needs-to-know-why-a-given-prediction-was-made."><i class="fa fa-check"></i><b>3.13.9</b> Interpretability: the ML deployments should support endpoints returning the explanation of our prediction, e.g. through SHAP values. Why? for a lot of use cases a prediction is not enough and the end-user needs to know why a given prediction was made.</a></li>
+<li class="chapter" data-level="3.13.10" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#data-centricity-rather-than-focus-on-model-performance-improvements-it-makes-sense-that-a-mlops-framework-also-enables-an-increased-focus-on-how-data-quality-and-breadth-can-be-improved."><i class="fa fa-check"></i><b>3.13.10</b> Data-centricity: rather than focus on model performance &amp; improvements, it makes sense that a MLOps framework also enables an increased focus on how data quality and breadth can be improved.</a></li>
+</ul></li>
+<li class="chapter" data-level="3.14" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#general-advice-thoughts-on-data-science"><i class="fa fa-check"></i><b>3.14</b> General Advice &amp; Thoughts on data science</a><ul>
+<li class="chapter" data-level="3.14.1" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#to-the-managers-of-data-scientists"><i class="fa fa-check"></i><b>3.14.1</b> To the managers of data scientists</a></li>
+<li class="chapter" data-level="3.14.2" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#when-is-your-data-big"><i class="fa fa-check"></i><b>3.14.2</b> When is your data big?</a></li>
+<li class="chapter" data-level="3.14.3" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#c"><i class="fa fa-check"></i><b>3.14.3</b> C++?</a></li>
+<li class="chapter" data-level="3.14.4" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#on-metrics-and-being-data-driven"><i class="fa fa-check"></i><b>3.14.4</b> On Metrics and Being Data-Driven</a></li>
+<li class="chapter" data-level="3.14.5" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#fallacies-and-failures-in-judgment"><i class="fa fa-check"></i><b>3.14.5</b> Fallacies and Failures in Judgment</a></li>
+<li class="chapter" data-level="3.14.6" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#on-relevance"><i class="fa fa-check"></i><b>3.14.6</b> On relevance</a></li>
+<li class="chapter" data-level="3.14.7" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#on-model-complexity"><i class="fa fa-check"></i><b>3.14.7</b> On model complexity</a></li>
+<li class="chapter" data-level="3.14.8" data-path="data-science-best-practices-and-processes.html"><a href="data-science-best-practices-and-processes.html#on-credit-and-accountability"><i class="fa fa-check"></i><b>3.14.8</b> On credit and accountability</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="statistical-methods.html"><a href="statistical-methods.html"><i class="fa fa-check"></i><b>4</b> Statistical Methods</a><ul>
+<li class="chapter" data-level="4.1" data-path="statistical-methods.html"><a href="statistical-methods.html#causal-inference"><i class="fa fa-check"></i><b>4.1</b> Causal Inference</a></li>
+<li class="chapter" data-level="4.2" data-path="statistical-methods.html"><a href="statistical-methods.html#spike-and-slab-regression"><i class="fa fa-check"></i><b>4.2</b> spike-and-slab regression</a></li>
+<li class="chapter" data-level="4.3" data-path="statistical-methods.html"><a href="statistical-methods.html#nowcasting"><i class="fa fa-check"></i><b>4.3</b> Nowcasting</a></li>
+<li class="chapter" data-level="4.4" data-path="statistical-methods.html"><a href="statistical-methods.html#higher-criticism"><i class="fa fa-check"></i><b>4.4</b> Higher Criticism</a></li>
+<li class="chapter" data-level="4.5" data-path="statistical-methods.html"><a href="statistical-methods.html#higher-criticism-1"><i class="fa fa-check"></i><b>4.5</b> Higher Criticism</a></li>
+<li class="chapter" data-level="4.6" data-path="statistical-methods.html"><a href="statistical-methods.html#cognitive-biases"><i class="fa fa-check"></i><b>4.6</b> Cognitive Biases</a></li>
+<li class="chapter" data-level="4.7" data-path="statistical-methods.html"><a href="statistical-methods.html#hierarchical-and-grouped-time-series"><i class="fa fa-check"></i><b>4.7</b> Hierarchical and grouped time series</a></li>
+<li class="chapter" data-level="4.8" data-path="statistical-methods.html"><a href="statistical-methods.html#reconciled-distributional-forecasts"><i class="fa fa-check"></i><b>4.8</b> Reconciled Distributional Forecasts</a></li>
+<li class="chapter" data-level="4.9" data-path="statistical-methods.html"><a href="statistical-methods.html#random-effects-and-mixed-models"><i class="fa fa-check"></i><b>4.9</b> Random Effects and Mixed Models</a><ul>
+<li class="chapter" data-level="4.9.1" data-path="statistical-methods.html"><a href="statistical-methods.html#crossed-versus-nested-random-effects."><i class="fa fa-check"></i><b>4.9.1</b> Crossed versus nested random effects.</a></li>
+<li class="chapter" data-level="4.9.2" data-path="statistical-methods.html"><a href="statistical-methods.html#very-large-number-of-res"><i class="fa fa-check"></i><b>4.9.2</b> Very Large Number of RE’s</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="statistical-methods.html"><a href="statistical-methods.html#propensity-score-matching-caliper"><i class="fa fa-check"></i><b>4.10</b> Propensity Score Matching : Caliper</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="explainability-methods.html"><a href="explainability-methods.html"><i class="fa fa-check"></i><b>5</b> Explainability Methods</a><ul>
+<li class="chapter" data-level="5.1" data-path="explainability-methods.html"><a href="explainability-methods.html#sensitivity-analysis-and-shapley-values"><i class="fa fa-check"></i><b>5.1</b> Sensitivity Analysis and Shapley Values</a></li>
+<li class="chapter" data-level="5.2" data-path="explainability-methods.html"><a href="explainability-methods.html#relationship-between-sobol-indices-and-shapley-values"><i class="fa fa-check"></i><b>5.2</b> Relationship between Sobol indices and Shapley values</a></li>
+<li class="chapter" data-level="5.3" data-path="explainability-methods.html"><a href="explainability-methods.html#cran-sensitivity-package"><i class="fa fa-check"></i><b>5.3</b> CRAN sensitivity package</a></li>
+<li class="chapter" data-level="5.4" data-path="explainability-methods.html"><a href="explainability-methods.html#partial-correlation-coefficients"><i class="fa fa-check"></i><b>5.4</b> Partial Correlation Coefficients</a></li>
+<li class="chapter" data-level="5.5" data-path="explainability-methods.html"><a href="explainability-methods.html#sobol-indices-for-deterministic-function-and-for-model"><i class="fa fa-check"></i><b>5.5</b> Sobol indices for deterministic function and for model</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html"><i class="fa fa-check"></i><b>6</b> Machine Learning Methods</a><ul>
+<li class="chapter" data-level="6.1" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#on-model-averaging"><i class="fa fa-check"></i><b>6.1</b> On Model Averaging</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="geometric-methods.html"><a href="geometric-methods.html"><i class="fa fa-check"></i><b>7</b> Geometric Methods</a><ul>
+<li class="chapter" data-level="7.1" data-path="geometric-methods.html"><a href="geometric-methods.html#poincare-embedding"><i class="fa fa-check"></i><b>7.1</b> Poincare Embedding</a></li>
+<li class="chapter" data-level="7.2" data-path="geometric-methods.html"><a href="geometric-methods.html#multirelational"><i class="fa fa-check"></i><b>7.2</b> Multirelational</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="neural-networks.html"><a href="neural-networks.html"><i class="fa fa-check"></i><b>8</b> Neural Networks</a><ul>
+<li class="chapter" data-level="8.1" data-path="neural-networks.html"><a href="neural-networks.html#normalizing-flows-variational-inference-with-nf"><i class="fa fa-check"></i><b>8.1</b> Normalizing Flows Variational Inference With NF</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="regularization.html"><a href="regularization.html"><i class="fa fa-check"></i><b>9</b> Regularization</a><ul>
+<li class="chapter" data-level="9.1" data-path="regularization.html"><a href="regularization.html#sa-and-m-estimators"><i class="fa fa-check"></i><b>9.1</b> SA and M-estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="random-matrix-theory-and-machine-learning.html"><a href="random-matrix-theory-and-machine-learning.html"><i class="fa fa-check"></i><b>10</b> Random Matrix Theory and Machine Learning</a><ul>
+<li class="chapter" data-level="10.1" data-path="random-matrix-theory-and-machine-learning.html"><a href="random-matrix-theory-and-machine-learning.html#section"><i class="fa fa-check"></i><b>10.1</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Selected Topics In Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-science-best-practices-and-processes" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Data Science Best Practices and Processes</h1>
+<p>This (draft) document is meant to help onboard new data scientists and serve as a reference for current data scientists. Data science consists of a multidisciplinary field encompassing machine learning &amp; statistics, knowledge representation, visualization, writing, and software engineering. This document covers a variety of subjects and best practices from how to run an Agile data science process, to coding standards, and to project management.</p>
+<p>There is no right way to do data science but many ways to do it wrong. This document represents just one approach. Data science is a team sport, and consensus is the best way to define what process works best.</p>
+<p>Above all else, we’re scientists, and that comes with ethical and process implications. Keep this in mind always.</p>
+<div id="code-of-conduct" class="section level2">
+<h2><span class="header-section-number">3.1</span> Code of Conduct</h2>
+<p>We don’t have a strict code of conduct here, but there are a few essential principles we hold dear:</p>
+<ul>
+<li>Act in good faith: we are here to accomplish several goals - deliver value to the company, one another, and ourselves. Whenever you have a choice to make about work or how you treat a colleague, ask whether, in doing so, you further these goals.</li>
+<li>Consider things from other people’s perspectives: Working on a team is hard if we expect our colleagues to do all the work of communication. Give people the benefit of the doubt when you disagree, and try to understand what they are really saying and why they might be doing so.</li>
+<li>Create a welcoming environment: This team recognizes that racism, sexism, gender discrimination, and classism can severely impact the way people move through both life and the workplace. It is our policy to proactively address these problems by educating ourselves about them, self-monitoring and letting our colleagues, regardless of their background, get on with work. At the same time, we actively seek to improve the work environment.</li>
+</ul>
+</div>
+<div id="ethics" class="section level2">
+<h2><span class="header-section-number">3.2</span> Ethics</h2>
+<p>Ethics is an essential concern in machine learning. Focusing on the ethical impact of a model will potentially reduce bias and improve results. Try to think through the hidden biases and potential misuses of any model you build. Think about this in model choice - try to use transparent methods like traditional statistical models and decision trees when interpretability is important.</p>
+<p>8 Principles for ethical machine learning.
+[<a href="https://ethical.institute/" class="uri">https://ethical.institute/</a>]</p>
+<ul>
+<li><p>Human augmentation: assess the impact of incorrect predictions and, when reasonable, design systems with human-in-the-loop review processes.</p></li>
+<li><p>Bias evaluation: continuously develop processes that allow me to understand, document, and monitor bias in development and production.</p></li>
+<li><p>Explainability by justification: develop tools and processes to continuously improve transparency and explainability of machine learning systems where reasonable.</p></li>
+<li><p>Reproducible operations: develop the infrastructure required to enable for a reasonable level of reproducibility across the operations of ML systems.</p></li>
+<li><p>Displacement strategy: identify and document relevant information so that business change processes can be developed to mitigate the impact towards workers being automated.</p></li>
+<li><p>Practical accuracy: develop processes to ensure my accuracy and cost metric functions are aligned to the domain-specific applications.</p></li>
+<li><p>Trust by privacy: build and communicate processes that protect and handle data with stakeholders that may interact with the system directly and/or indirectly.</p></li>
+<li><p>Data risk awareness: develop and improve reasonable processes and infrastructure to ensure data and model security are being taken into consideration during the development of machine learning systems.</p></li>
+</ul>
+</div>
+<div id="project-philosophy" class="section level2">
+<h2><span class="header-section-number">3.3</span> Project Philosophy</h2>
+<p>Projects should, to the best of our ability, be broken up into as many small pieces as possible and is feasible. Dependencies between projects should be managed by tools and proper software configuration management (packages) rather than by including code from one project directly inside another project.</p>
+<p>This practice encourages modular design and also encourages independence between projects. Sometimes it is better to implement multiple similar pieces of code in different projects than it is to expect a single library to cover all of these slightly different cases in a simple, coherent way.</p>
+<p>When a subset of a project reaches the point of being its own library or utility, don’t be afraid to factor it out - git can even preserve the history of the sub-project in a new repository for you.</p>
+<p>Many choices we make as software developers are arbitrary, in the sense that they don’t significantly impact productivity. Whether a team uses R or Python is probably one such choice, for instance, since both languages provide roughly the same capabilities or their costs and benefits balance out. The value of fixing such decisions isn’t in the choices themselves, but on reducing the complexity of the development process for the data science community at large. In other words, while we strive to find the best possible practices to use, don’t take this document as bald assertions that these are the optimal choices. The point is to simplify teamwork, collaboration, and add clarity to our process.</p>
+</div>
+<div id="project-planning-and-accounting" class="section level2">
+<h2><span class="header-section-number">3.4</span> Project Planning and Accounting</h2>
+<p>Data science should be run in an Agile fashion. Agile is a general type of project management process, used mainly for software development, where and solutions evolve through the collaborative effort of self-organizing. This includes Kanban and SCRUM.</p>
+<ul>
+<li>Generally, a data scientist will work on only one or two projects per sprint.</li>
+<li>Project artifacts should be stored in content stores like Rally/Jira, Confluence/Mojo</li>
+<li>Code, documentation and all software artifacts for a project <em>must</em> exist in a git repository</li>
+<li>Data and private information should <em>not</em> exist in any git repository. Automation in each project should, instead, fetch necessary data to a location outside the git repository (or ignored by it). Instructions about where to get private information required for the project should be in the project documentation.</li>
+<li>Projects must have defined completion criteria before starting</li>
+</ul>
+<p>Project planning is hard. The point isn’t to get estimates exactly right but to create a manageable history of effort. It is also very good for productivity to resolve questions of priorities and to plan ahead of time so that when we do get to work, we can do so without distraction.</p>
+</div>
+<div id="agile" class="section level2">
+<h2><span class="header-section-number">3.5</span> Agile</h2>
+<p><em>Negative results are not a failure and in fact, are expected in a healthy data science practice.</em></p>
+<div id="the-agile-manifesto" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> The Agile Manifesto</h3>
+<p>Value:</p>
+<ul>
+<li>Individuals and interactions over processes and tools</li>
+<li>Working software over comprehensive documentation</li>
+<li>Customer collaboration over contract negotiation</li>
+<li>Responding to change over following a plan</li>
+</ul>
+</div>
+<div id="agile-data-science-manifesto" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> Agile Data Science Manifesto</h3>
+<p>Agile Data Science is organized around the following principles:</p>
+<ul>
+<li>Iterate, iterate, iterate: tables, charts, reports, predictions.</li>
+<li>Ship intermediate output. Even failed experiments have output.</li>
+<li>Prototype experiments.</li>
+<li>Integrate the tyrannical opinion of data in product management.</li>
+<li>Climb up and down the data-value pyramid as we work.</li>
+<li>Discover and pursue the critical path to a killer product.</li>
+<li>Get meta. Describe the process, not just the end state.</li>
+</ul>
+</div>
+<div id="sprints" class="section level3">
+<h3><span class="header-section-number">3.5.3</span> Sprints</h3>
+<p>Try to run an agile process with the aim of coordinating downtime throughout the year optimally. No team runs full steam all year - by being honest about the need for creative downtime and team bonding, we’ll be more productive.</p>
+<ul>
+<li>Two week sprints</li>
+<li>Mandatory daily stand-ups - 10-15 minutes by the clock</li>
+<li>Stand-ups are not a time for announcements</li>
+<li>Hold lab-style development meetings for the whole team to discuss technical matters and review interim results</li>
+<li>Use chat regularly to communicate- a distributed development culture requires this</li>
+<li>Share code snippets and demo results frequently through the sprint</li>
+<li>retrospectives are important</li>
+<li>scoping of work is important</li>
+<li>code reviews <em>VERY</em> important</li>
+</ul>
+</div>
+<div id="planning-estimation" class="section level3">
+<h3><span class="header-section-number">3.5.4</span> Planning &amp; Estimation</h3>
+<p>During this phase, we choose a set of tasks to try to accomplish in the sprint, and we break them down into sub-tasks, which can be completed in one day or less. We generate enough of these sub-tasks that we can reasonably expect to exhaust them in the current sprint. We may also pull such subtasks from the backlog.</p>
+<p>Work is, of course, organized in pieces more substantial than one-day tasks. Some teams manage these in terms of Projects, Epics, Stories, and other sorts of tickets.</p>
+<p>All projects which take multiple days of work should be well documented. These include but not limited to projects involving DevOps, R&amp;D, presentations, academic collaborations, etc.</p>
+</div>
+<div id="execution" class="section level3">
+<h3><span class="header-section-number">3.5.5</span> Execution</h3>
+<p>A ticket should be small enough to complete in one day or less. When you work on a ticket, you create a local branch from master for the given project and do your work there. You have some latitude on how you actually work in this branch, but the end result should be a series of small commits which implements the feature.</p>
+<p>At this stage, you will rebase your code on the most recent version of master, and either merge your branch into master and push or make a pull request.
+This is roughly the <em>git flow</em> workflow. Read about it here:</p>
+<p><a href="http://nvie.com/posts/a-successful-git-branching-model/" class="uri">http://nvie.com/posts/a-successful-git-branching-model/</a></p>
+<p>Repeat until the end of the sprint.</p>
+</div>
+<div id="demo" class="section level3">
+<h3><span class="header-section-number">3.5.6</span> Demo</h3>
+<p>Each sprint ends with a sprint demo, which shows either some interesting results of your work or a two-three slide summary of the work you’ve accomplished in the sprint. Analytics’ ultimate purpose is to provide insight into data - if your work does that, be sure to present that result in the most engaging way possible, given the time constraints.</p>
+<p>It’s very important to include stakeholders in the demo. The content needs to be understandable for non-technical managers and customers. It’s OK to have technical content but be clear where it is, and always respect the audience. The demo is not a time to show other data scientists your skills at mathematics and statistics - there are other venues for that. Don’t derail the sprint demo with side conversations, planning, or peer review. The demo is to communicate what was accomplished during the sprint.</p>
+</div>
+<div id="retrospectives" class="section level3">
+<h3><span class="header-section-number">3.5.7</span> Retrospectives</h3>
+<p>After the demo comes a retrospective, this is an opportunity to reflect on how the agile process is working. What’s working well, what needs to improve, and an action plan for improvements.</p>
+</div>
+<div id="open-time" class="section level3">
+<h3><span class="header-section-number">3.5.8</span> Open Time</h3>
+<p>Two days between each sprint and the next are open times. Use this time to work on long-shot projects or for learning new techniques that aren’t necessarily immediately applicable to the current work. Don’t use this time for refactoring code: this task can and should be included in sprints since it is a bona fide cost of doing business. Do use sprint time for learning critical path techniques.</p>
+</div>
+<div id="the-master-backlog-and-the-open-business-questions-list" class="section level3">
+<h3><span class="header-section-number">3.5.9</span> The Master Backlog and the Open Business Questions List</h3>
+<p>Keep a document in the enterprise store that describes at a high level what are the primary business questions and concerns that drive the need for data science. This content should come from the business community and will not cover all that is worked on by data science. The aim should be to give the customer what they want as well as what they need but might not be aware of.</p>
+<p>Keep a master backlog of all ideas and use cases - from well formulated to the not so well thought out. Cull this as a team regularly, refining and adding detail to the use cases that make sense to keep. This should be open to all data scientists to collaborate on.</p>
+<p>While we may have SME’s in certain algorithm or enterprise domains, try not to factor the work in a way that creates knowledge silos. This makes review hard, adds risk to code maintenance, and can stifle innovation.</p>
+</div>
+</div>
+<div id="statistical-analysis-vs.-machine-learning-and-r-vs.-python" class="section level2">
+<h2><span class="header-section-number">3.6</span> Statistical Analysis vs. Machine Learning and R vs. Python</h2>
+<p>There are no rules here. Try to use what’s best for the job. R has really good statistics and markdown capabilities. Python might be better for production use when all else is equal. There is a lot of overlap in functionality between R &amp; Python. Generally, R is used for statistical analysis. For Bayesian statistics, the tooling available in Python might be equivalent (JAGS, Stan, TF Probability). Python, Java, R, Spark/Scala are all acceptable for machine learning applications.</p>
+<p>[<a href="https://github.com/matloff/R-vs.-Python-for-Data-Science" class="uri">https://github.com/matloff/R-vs.-Python-for-Data-Science</a>]</p>
+</div>
+<div id="version-control" class="section level2">
+<h2><span class="header-section-number">3.7</span> Version Control</h2>
+<p>Version control is one of the most effective tools data scientists have to ensure smooth collaboration and total awareness of the history and meaning of software artifacts. Understanding git is required.</p>
+</div>
+<div id="git-fundamental-ideas" class="section level2">
+<h2><span class="header-section-number">3.8</span> Git Fundamental Ideas</h2>
+<p>For those unfamiliar with git, this reference may be helpful.</p>
+<p><a href="https://git-scm.com/book/en/v2" class="uri">https://git-scm.com/book/en/v2</a></p>
+<p>Don’t think of your project as a bunch of files. Think of it as a series of commits which are, in actuality, simply <em>diffs</em> applied to the previous state of the repository.</p>
+<p>A git repository literally is just a set of commit chains and some tools to merge different chains and apply the patches inside each to the current state of the project. But it is all <em>diffs</em> at the end of the day.</p>
+<ol style="list-style-type: decimal">
+<li>Always make small commits that do one thing.</li>
+<li>Always submit pull requests or merge to master a chain of small commits which result in a running, test-passing project.</li>
+<li>Don’t document too much code inline. Documentation in source code gets out of date and can make code less readable.</li>
+<li>Do write very informative commit messages. These are perpetually attached to the code they refer to and furnish perpetual, contextual documentation that doesn’t drift out of date.</li>
+<li>Do refactor code aggressively. If you follow rules 1-4 it will always be easy to find when things went wrong and to recover the latest, meaningful working version.</li>
+<li>Do get comfortable with git’s fancier, patch management capabilities. Learn to revert and cherry pick. Learn to rebase and clean up messes. Know what a detached head state is.</li>
+</ol>
+<p>There are different types of git workflows. Get familiar with these.</p>
+<ul>
+<li>fork and pull</li>
+<li>feature branch</li>
+<li>feature branch + merge request</li>
+<li>gitflow / master + develop</li>
+</ul>
+<p>For projects with multiple data scientists where the ultimate aim is production, the gitflow workflow is probably best.</p>
+</div>
+<div id="definition-of-done-for-data-science" class="section level2">
+<h2><span class="header-section-number">3.9</span> Definition of Done for Data Science</h2>
+<div id="workflow" class="section level3">
+<h3><span class="header-section-number">3.9.1</span> Workflow</h3>
+<p>If an analysis is to be repeated, it needs to be scripted in a repeatable fashion or exposed via an API. The minimal output of a project always consists of a report. Additional artifacts include R and Python packages, intermediate data for further analysis, blog posts, etc.</p>
+</div>
+<div id="testing" class="section level3">
+<h3><span class="header-section-number">3.9.2</span> Testing</h3>
+<p>Code should be tested where possible. Any algorithms should have test data passed through. This is not necessary for well-used algorithms in common frameworks (LM in R, for example). This is not only for the benefit of the workflow - but for the benefit of other team members and future interns.</p>
+</div>
+<div id="data-validation" class="section level3">
+<h3><span class="header-section-number">3.9.3</span> Data Validation</h3>
+<p>Data should be randomly sampled at various points in the workflow. Any transformations should be manually extracted. This data - manually transformed where needed - should be spot-checked against the original source.</p>
+</div>
+<div id="hardware" class="section level3">
+<h3><span class="header-section-number">3.9.4</span> Hardware</h3>
+<p>Favor disposable hardware and persistent data paradigms. A small community of data scientists should be responsible for maintaining DevOps best practices like connecting containers to git, how to orchestrate multi-container flows, and managing how EMR workflows are developed and deployed.</p>
+</div>
+</div>
+<div id="languages" class="section level2">
+<h2><span class="header-section-number">3.10</span> Languages</h2>
+<ul>
+<li>R</li>
+<li>Python</li>
+<li>SQL</li>
+<li>Spark : Scala / Python / R</li>
+</ul>
+<div id="ides-vs-notebooks" class="section level3">
+<h3><span class="header-section-number">3.10.1</span> IDE’s vs Notebooks</h3>
+<p>Notebooks are a great way to start a project but are not appropriate for commercial deployment. Use them, but keep in mind that it’s easier to use an IDE from the start if you know you’re going to be developing a package. Use templates for software configuration management.</p>
+<p>[<a href="https://github.com/uwescience/shablona" class="uri">https://github.com/uwescience/shablona</a>]</p>
+<p>[<a href="https://usethis.r-lib.org/articles/articles/usethis-setup.html" class="uri">https://usethis.r-lib.org/articles/articles/usethis-setup.html</a>]</p>
+</div>
+</div>
+<div id="modern-devops" class="section level2">
+<h2><span class="header-section-number">3.11</span> Modern devops</h2>
+<p>All of the modern software engineering paradigms apply to data science.</p>
+<ul>
+<li>Containerization</li>
+<li>API’s and REST</li>
+<li>Continuous integration : <a href="https://www.redhat.com/en/topics/devops/what-is-ci-cd" class="uri">https://www.redhat.com/en/topics/devops/what-is-ci-cd</a></li>
+<li>Unit testing</li>
+<li>Code coverage</li>
+<li>Logging with levels (DEBUG INFO WARN ERROR) and streams (file stdout etc) : log4r , python logger<br />
+</li>
+<li>linters for code standards: such as flake8 (which combines the tools pep8 and pyflakes) and lintr</li>
+<li>Auto documentation tools - Doxygen, Roxygen, Sphynx</li>
+</ul>
+<p>These are best incorporated in an Agile data science practice by using platforms and templates. GitLab offers a platform for CI. The tidyverse has a library for creating and maintaining R packages - usethis. There are package templates for Python projects as well.
+[<a href="https://github.com/uwescience/shablona" class="uri">https://github.com/uwescience/shablona</a>]
+is particularly comprehensive. Look for easy ways to incorporate these into your practice.</p>
+<p>A common pitfall in data science is to spend too much time on these concerns. The risk being that all your time will be spent tooling and optimizing and not innovating. Try to strike a good balance here.</p>
+</div>
+<div id="data-science-reading-list" class="section level2">
+<h2><span class="header-section-number">3.12</span> Data Science Reading List</h2>
+<p>This is not a comprehensive list of reading material, but it’s an excellent place to start for the basics. The machine learning material generally requires multivariate calculus, probability, statistics, and linear algebra.</p>
+<div id="big-data" class="section level3">
+<h3><span class="header-section-number">3.12.1</span> Big Data</h3>
+<ul>
+<li>Agile Data Science Chapter 2. Agile Tools</li>
+<li>Hadoop: The Definitive Guide, 4th Edition by Tom White</li>
+<li>Learning Spark by Matei Zaharia , Patrick Wendell , Andy Konwinski , Holden Karau</li>
+<li>Advanced Analytics with Spark, 2nd Edition by Josh Wills , Sean Owen , Sandy Ryza , Uri Laserson</li>
+<li>Agile Data Science 2.0, 1st Edition by Russell Jurney</li>
+</ul>
+</div>
+<div id="statistics-theory" class="section level3">
+<h3><span class="header-section-number">3.12.2</span> Statistics Theory</h3>
+<ul>
+<li>Mathematical Statistics and Data Analysis 3rd Edition by John A. Rice</li>
+<li>Mathematical Statistics 2nd Edition by Wiebe R. Pestman</li>
+<li>Mathematical Statistics: Basic Ideas and Selected Topics 1st Edition Peter J. Bickel , Kjell A. Doksum</li>
+</ul>
+</div>
+<div id="statistics-applied" class="section level3">
+<h3><span class="header-section-number">3.12.3</span> Statistics Applied</h3>
+<ul>
+<li>Linear Models with R by Julian J. Faraway</li>
+<li>Extending the Linear Model with R: Generalized Linear, Mixed Effects and Nonparametric Regression Models by Julian J. Faraway</li>
+<li>Generalized Linear Models by P. McCullagh and John A. Nelder</li>
+</ul>
+</div>
+<div id="machine-learning" class="section level3">
+<h3><span class="header-section-number">3.12.4</span> Machine Learning</h3>
+<ul>
+<li>An Introduction to Statistical Learning: with Applications in R (Springer Texts in Statistics) by Gareth James,Daniela Witten,Trevor Hastie, Robert Tibshirani</li>
+<li>(Intermediate) The Elements of Statistical Learning: Data Mining, Inference, and Prediction, Second Edition (Springer Series in Statistics) by Trevor Hastie,Robert Tibshirani, Jerome Friedman</li>
+<li>Machine Learning: A Probabilistic Perspective (Adaptive Computation and Machine Learning series) by Kevin P. Murphy</li>
+<li>Probability for Statistics and Machine Learning: Fundamentals and Advanced Topics Springer Texts in Statistics DasGupta, Anirban</li>
+<li>Probabilistic Graphical Models: Principles and Techniques (Adaptive Computation and Machine Learning series) 1st Edition by Daphne Koller (Author), Nir Friedman</li>
+<li>Deep Learning (Adaptive Computation and Machine Learning series) by Ian Goodfellow (Author), Yoshua Bengio (Author), Aaron Courville</li>
+<li>Learning with Kernels: Support Vector Machines, Regularization, Optimization, and Beyond (Adaptive Computation and Machine Learning) by Bernhard Schlkopf (Author), Alexander J. Smola</li>
+</ul>
+</div>
+<div id="core-competencies" class="section level3">
+<h3><span class="header-section-number">3.12.5</span> Core Competencies</h3>
+<ul>
+<li>git [<a href="https://www.csc.kth.se/utbildning/kth/kurser/DD2385/material/gitmagic.pdf" class="uri">https://www.csc.kth.se/utbildning/kth/kurser/DD2385/material/gitmagic.pdf</a>]</li>
+<li>SQL</li>
+<li>R</li>
+<li>Spark</li>
+<li>Python</li>
+</ul>
+</div>
+</div>
+<div id="mlops---devops-applied-to-machine-learning-workflows" class="section level2">
+<h2><span class="header-section-number">3.13</span> MLOps - devops applied to machine learning workflows</h2>
+<p>First we describe the theoretical concerns and later in the work we’ll demonstrate how these concepts are developed in practice.</p>
+<div id="development-platform" class="section level3">
+<h3><span class="header-section-number">3.13.1</span> Development platform</h3>
+<p>a collaborative platform for performing ML experiments and empowering the creation of ML models by data scientists should be considered part of the MLOps framework. This platform should enable secure access to data sources (e.g. from data engineering workflows). We want the handover from ML training to deployment to be as smooth as possible, which is more likely the case for such a platform as compared to ML models developed in different local environment.
+Model unit testing: every time we create, change, or retrain a model, we should automatically validate the integrity of the model, e.g.
+- should meet minimum performance on test set
+- should perform well on synthetic use case-specific datasets</p>
+</div>
+<div id="versioning" class="section level3">
+<h3><span class="header-section-number">3.13.2</span> Versioning</h3>
+<p>it should be possible to go back in time to inspect everything relating to a given model; e.g. what data &amp; code was used. Why? because it something breaks, we need to be able to go back in time and see why.
+Model registry: there should be an overview of deployed &amp; decommissioned ML models, their version history, and deployment stage of each version. Why? if something breaks, we can rollback a previous archived version back into production.</p>
+</div>
+<div id="model-governance-only-certain-people-should-have-access-to-see-training-related-to-any-given-model-and-there-should-be-access-control-for-who-can-requestrejectapprove-transitions-between-deployment-stages-e.g.-dev-to-test-to-prod-in-the-model-registry." class="section level3">
+<h3><span class="header-section-number">3.13.3</span> Model Governance: only certain people should have access to see training related to any given model, and there should be access control for who can request/reject/approve transitions between deployment stages (e.g. dev to test to prod) in the model registry.</h3>
+</div>
+<div id="deployments-deployment-can-be-many-things-but-in-this-post-i-consider-the-case-where-we-want-to-deploy-a-model-to-cloud-infrastructure-and-expose-an-api-which-enables-other-people-to-consume-and-use-the-model-i.e.-im-not-considering-cases-where-we-want-to-deploy-ml-models-into-embedded-systems.-efficient-model-deployments-on-appropriate-infrastructure-should" class="section level3">
+<h3><span class="header-section-number">3.13.4</span> Deployments: deployment can be many things, but in this post I consider the case where we want to deploy a model to cloud infrastructure and expose an API, which enables other people to consume and use the model, i.e. I’m not considering cases where we want to deploy ML models into embedded systems. Efficient model deployments on appropriate infrastructure should:</h3>
+<ul>
+<li>support multiple ML frameworks + custom models</li>
+<li>have well defined API spec (e.g. Swagger/OpenAPI)</li>
+<li>support containerized model servers
+Monitoring: tracking performance metrics (throughput, uptime, etc.). Why? If all of the sudden a model starts returning errors, or being unexpectedly slow, we need to know before the end-user complains, so that we can fix it.</li>
+</ul>
+</div>
+<div id="feedback-we-need-to-feedback-information-to-the-model-on-how-well-it-is-performing.-why-typically-we-run-predictions-on-new-samples-where-we-do-not-yet-know-the-ground-truth.-as-we-learn-the-truth-however-we-need-to-inform-the-model-so-that-it-can-report-on-how-well-it-is-actually-doing." class="section level3">
+<h3><span class="header-section-number">3.13.5</span> Feedback: we need to feedback information to the model on how well it is performing. Why? typically we run predictions on new samples where we do not yet know the ground truth. As we learn the truth, however, we need to inform the model, so that it can report on how well it is actually doing.</h3>
+</div>
+<div id="ab-testing-no-matter-how-solid-cross-validation-we-think-were-doing-we-never-know-how-the-model-will-perform-until-it-actually-gets-deployed.-it-should-be-easy-to-perform-ab-experiments-with-live-models-within-the-mlops-framework." class="section level3">
+<h3><span class="header-section-number">3.13.6</span> A/B testing: no matter how solid cross-validation we think we’re doing, we never know how the model will perform until it actually gets deployed. It should be easy to perform A/B experiments with live models within the MLOps framework.</h3>
+</div>
+<div id="drift-detection-typically-the-longer-time-a-given-model-is-deployed-the-worse-it-becomes-as-circumstances-change-compared-to-the-time-of-training-the-model.-we-can-try-to-monitor-and-alert-on-these-different-circumstances-or-drifts-before-they-get-too-severe" class="section level3">
+<h3><span class="header-section-number">3.13.7</span> Drift detection: typically the longer time a given model is deployed the worse it becomes as circumstances change compared to the time of training the model. We can try to monitor and alert on these different circumstances, or “drifts”, before they get too severe:</h3>
+<ul>
+<li>Concept drift: when the relation between input and output has changed</li>
+<li>Prediction drift: changes in incoming predictions, but model still holds</li>
+<li>Label drift: change in the model’s outcomes compared to training data</li>
+<li>Feature drift: change in the distribution of model input data</li>
+</ul>
+</div>
+<div id="outlier-detection-if-a-deployed-model-receives-an-input-sample-which-is-significantly-different-from-anything-observed-during-training-we-can-try-to-identify-this-sample-as-a-potential-outlier-and-the-returned-prediction-should-be-marked-as-such-indicating-that-the-end-user-should-be-careful-in-trusting-the-prediction." class="section level3">
+<h3><span class="header-section-number">3.13.8</span> Outlier detection: if a deployed model receives an input sample which is significantly different from anything observed during training, we can try to identify this sample as a potential outlier, and the returned prediction should be marked as such, indicating that the end-user should be careful in trusting the prediction.</h3>
+<p>Adversarial Attack Detection: we should be warned when our models are attacked by adversarial samples (e.g. someone trying to abuse / manipulate the outcome of our algorithms).</p>
+</div>
+<div id="interpretability-the-ml-deployments-should-support-endpoints-returning-the-explanation-of-our-prediction-e.g.-through-shap-values.-why-for-a-lot-of-use-cases-a-prediction-is-not-enough-and-the-end-user-needs-to-know-why-a-given-prediction-was-made." class="section level3">
+<h3><span class="header-section-number">3.13.9</span> Interpretability: the ML deployments should support endpoints returning the explanation of our prediction, e.g. through SHAP values. Why? for a lot of use cases a prediction is not enough and the end-user needs to know why a given prediction was made.</h3>
+<p>Governance of deployments: we not only need access restrictions on who can see the data, trained models, etc, but also for who can eventually use the deployed models. These deployed models can often be just as confidential as the data they were trained on.</p>
+</div>
+<div id="data-centricity-rather-than-focus-on-model-performance-improvements-it-makes-sense-that-a-mlops-framework-also-enables-an-increased-focus-on-how-data-quality-and-breadth-can-be-improved." class="section level3">
+<h3><span class="header-section-number">3.13.10</span> Data-centricity: rather than focus on model performance &amp; improvements, it makes sense that a MLOps framework also enables an increased focus on how data quality and breadth can be improved.</h3>
+</div>
+</div>
+<div id="general-advice-thoughts-on-data-science" class="section level2">
+<h2><span class="header-section-number">3.14</span> General Advice &amp; Thoughts on data science</h2>
+<p><em>The highest and most beautiful things in life are not to be heard about, nor read about, nor seen but, if one will, are to be lived.</em> Soren Kierkegaard</p>
+<p>Data science is not a new field - statistics, information theory, cybernetics (the science of communications and automatic control systems), and AI have been around a long time. What’s new are the engineering breakthroughs that have commoditized previously esoteric software and advances in hardware that have allowed for training much larger models. What else is new is the attention being paid to the field by business leaders.</p>
+<div id="to-the-managers-of-data-scientists" class="section level3">
+<h3><span class="header-section-number">3.14.1</span> To the managers of data scientists</h3>
+<p>Understand the resources and support required to maintain your data scientists. Don’t socialize too early. Data science is a craft where many projects have negative results or fail. Do take the time to understand the difference between negative results and failure due to technical reasons. Understand the difference between the different types of data scientists.</p>
+<p>[<a href="https://hbr.org/2018/11/the-kinds-of-data-scientist" class="uri">https://hbr.org/2018/11/the-kinds-of-data-scientist</a>]</p>
+</div>
+<div id="when-is-your-data-big" class="section level3">
+<h3><span class="header-section-number">3.14.2</span> When is your data big?</h3>
+<ul>
+<li>When it cant fit in memory on one computer</li>
+<li>When processing takes more than a few hours</li>
+</ul>
+<p>The data science community needs to maintain a few experts responsible for calcualting features on large data sets. Not everyone needs to learn Spark, but be familiar with it and understand how you might be able to write feature calculations in a way that can be deployed in Spark as a custom aggregation.</p>
+</div>
+<div id="c" class="section level3">
+<h3><span class="header-section-number">3.14.3</span> C++?</h3>
+<p>Yes, please.</p>
+<p>If you want to do anything serious in developing packages and machine learning algorithms, then C++ is a must. Consider Fortran as well. It’s not widely discussed, but a vast amount of data science is done running Fortran libraries written long ago. NIST statistics libraries, Arpack, CSuite, and Lapack are a few examples.</p>
+</div>
+<div id="on-metrics-and-being-data-driven" class="section level3">
+<h3><span class="header-section-number">3.14.4</span> On Metrics and Being Data-Driven</h3>
+<p>Enterprise efforts to be more data-driven can devolve into a culture of false certainty. The influence of results and metrics is dictated not by their reliability but rather by their abundance and the confidence with which they’re presented.</p>
+<p>This can lead to bad or misguided decision making. The remedy for this is to develop a strong culture of science and a code of ethics in the practice of data science.</p>
+<p>Sometimes, more data and more analytics are thrown at a problem when what’s needed is a hypothesis-based approach.</p>
+</div>
+<div id="fallacies-and-failures-in-judgment" class="section level3">
+<h3><span class="header-section-number">3.14.5</span> Fallacies and Failures in Judgment</h3>
+<p>Biases not only come from the models we fit. They are an inherent part of the human world the data scientist interacts with. Be familiar with these biases. Try to understand the human biases that arise in the enterprise - utility theory provides a framework to understand how money can make decisions
+‘irrational’ from a modeling point of view. Pricing, commission rates, deals, resource allocations are areas fraught with bias. Be sensitive to these and try to model around them or account for them directly.</p>
+<ul>
+<li><p>Lucid Fallacy: Mistaking the complex real-world to the well-posed problems of mathematics and laboratory experiments.</p></li>
+<li><p>Iatrogenics : Harm done by the healer, like the doctor doing more harm than good.</p></li>
+<li><p>Naive Interventionism: intervention with disregard to iatrogenics. The preference or perceived obligation, to “do something” over doing nothing.</p></li>
+<li><p>The Agency Problem: A moral hazard and conflict of interest that may arise in any relationship where one party is expected to act in another’s best interests.</p></li>
+<li><p>Narrative fallacy: Our need to fit a story or pattern to series of connected or disconnected facts. The statistical application is data mining. Fitting a convincing and well-sounding story to the past as opposed to utilizing experimental methodology.</p></li>
+</ul>
+</div>
+<div id="on-relevance" class="section level3">
+<h3><span class="header-section-number">3.14.6</span> On relevance</h3>
+<p>Be kind to yourself when evaluating the relevance of your work to the enterprise. The company has hired talented staff, and you want to make an impact. It can sometimes be hard to understand why a model is not adopted, or why one of many competing models developed in isolation is adopted over another. This is part of science, while it may all be correct - it might all be relevant. Focus instead on the correctness of the results and the process in which it’s developed. Be kind to your leaders when assessing their reasoning behind making a decision regarding models and results.</p>
+</div>
+<div id="on-model-complexity" class="section level3">
+<h3><span class="header-section-number">3.14.7</span> On model complexity</h3>
+<p>Fit a variety of models, especially if using black-box methods. Simple models can provide a form of model validation for more complex models. Most business leaders at Red Hat understand effect size and significance. Models that are interpretable may sometimes provide more actionable insights than black-box methods with better predictive performance.</p>
+<p>Do you want to learn Tensorflow? Many frequentist and Bayesian models can now be fit in Tensorflow. It’s not just for CNN,s, BERT, and LSTM’s. Learn how to fit a linear model, wide and deep models, or investigate Tensorflow-Probability to learn about powerful samplers for large Bayesian models.</p>
+</div>
+<div id="on-credit-and-accountability" class="section level3">
+<h3><span class="header-section-number">3.14.8</span> On credit and accountability</h3>
+<p>We’re all responsible for the work that the data science community produces. Any failure of one is a failure for all.</p>
+<p>Give credit where credit is due, but keep in mind that work properly captured in agile artifacts speaks for itself.</p>
+<p>Data science code is owned by Red Hat and should maintain a copyright notice.</p>
+<p><code>Copyright &lt;YEAR&gt; ACME, Inc.</code></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="statistical-methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["topics_in_data_science.pdf", "topics_in_data_science.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -37,8 +37,7 @@ Ethics is an essential concern in machine learning. Focusing on the ethical impa
 
 - Data risk awareness: develop and improve reasonable processes and infrastructure to ensure data and model security are being taken into consideration during the development of machine learning systems.
 
-
-# Project Philosophy
+## Project Philosophy
 
 Projects should, to the best of our ability, be broken up into as many small pieces as possible and is feasible. Dependencies between projects should be managed by tools and proper software configuration management (packages) rather than by including code from one project directly inside another project.
 
@@ -48,7 +47,7 @@ When a subset of a project reaches the point of being its own library or utility
 
 Many choices we make as software developers are arbitrary, in the sense that they don't significantly impact productivity. Whether a team uses R or Python is probably one such choice, for instance, since both languages provide roughly the same capabilities or their costs and benefits balance out. The value of fixing such decisions isn't in the choices themselves, but on reducing the complexity of the development process for the data science community at large. In other words, while we strive to find the best possible practices to use, don't take this document as bald assertions that these are the optimal choices. The point is to simplify teamwork, collaboration, and add clarity to our process.
 
-# Project Planning and Accounting
+## Project Planning and Accounting
 
 Data science should be run in an Agile fashion.  Agile is a general type of project management process,  used mainly for software development, where and solutions evolve through the collaborative effort of self-organizing. This includes Kanban and SCRUM.
 
@@ -60,7 +59,7 @@ Data science should be run in an Agile fashion.  Agile is a general type of proj
 
 Project planning is hard. The point isn't to get estimates exactly right but to create a manageable history of effort. It is also very good for productivity to resolve questions of priorities and to plan ahead of time so that when we do get to work, we can do so without distraction.
 
-# Agile
+## Agile
 
 _Negative results are not a failure and in fact, are expected in a healthy data science practice._
 
@@ -85,7 +84,7 @@ Agile Data Science is organized around the following principles:
 - Discover and pursue the critical path to a killer product.
 - Get meta. Describe the process, not just the end state.
 
-## Sprints
+### Sprints
 
 Try to run an agile process with the aim of coordinating downtime throughout the year optimally.  No team runs full steam all year - by being honest about the need for creative downtime and team bonding, we'll be more productive.
 
@@ -99,7 +98,7 @@ Try to run an agile process with the aim of coordinating downtime throughout the
 - scoping of work is important
 - code reviews _VERY_ important
 
-## Planning & Estimation
+### Planning & Estimation
 
 During this phase, we choose a set of tasks to try to accomplish in the sprint, and we break them down into sub-tasks, which can be completed in one day or less. We generate enough of these sub-tasks that we can reasonably expect to exhaust them in the current sprint. We may also pull such subtasks from the backlog.
 
@@ -107,7 +106,7 @@ Work is, of course, organized in pieces more substantial than one-day tasks. Som
 
 All projects which take multiple days of work should be well documented. These include but not limited to projects involving DevOps, R&D, presentations, academic collaborations, etc.
 
-## Execution
+### Execution
 
 A ticket should be small enough to complete in one day or less. When you work on a ticket, you create a local branch from master for the given project and do your work there. You have some latitude on how you actually work in this branch, but the end result should be a series of small commits which implements the feature.
 
@@ -118,21 +117,21 @@ http://nvie.com/posts/a-successful-git-branching-model/
 
 Repeat until the end of the sprint.
 
-## Demo
+### Demo
 
 Each sprint ends with a sprint demo, which shows either some interesting results of your work or a two-three slide summary of the work you've accomplished in the sprint. Analytics' ultimate purpose is to provide insight into data - if your work does that, be sure to present that result in the most engaging way possible, given the time constraints.
 
 It's very important to include stakeholders in the demo. The content needs to be understandable for non-technical managers and customers. It's OK to have technical content but be clear where it is, and always respect the audience. The demo is not a time to show other data scientists your skills at mathematics and statistics - there are other venues for that. Don't derail the sprint demo with side conversations, planning, or peer review. The demo is to communicate what was accomplished during the sprint.
 
-## Retrospectives
+### Retrospectives
 
 After the demo comes a retrospective, this is an opportunity to reflect on how the agile process is working. What's working well, what needs to improve, and an action plan for improvements.
 
-## Open Time
+### Open Time
 
 Two days between each sprint and the next are open times. Use this time to work on long-shot projects or for learning new techniques that aren't necessarily immediately applicable to the current work. Don't use this time for refactoring code: this task can and should be included in sprints since it is a bona fide cost of doing business. Do use sprint time for learning critical path techniques.
 
-## The Master Backlog and the Open Business Questions List
+### The Master Backlog and the Open Business Questions List
 
 Keep a document in the enterprise store that describes at a high level what are the primary business questions and concerns that drive the need for data science. This content should come from the business community and will not cover all that is worked on by data science. The aim should be to give the customer what they want as well as what they need but might not be aware of.
 
@@ -146,7 +145,7 @@ There are no rules here. Try to use what's best for the job. R has really good s
 
 [https://github.com/matloff/R-vs.-Python-for-Data-Science]
 
-# Version Control
+## Version Control
 
 Version control is one of the most effective tools data scientists have to ensure smooth collaboration and total awareness of the history and meaning of software artifacts. Understanding git is required.
 
@@ -176,7 +175,7 @@ There are different types of git workflows. Get familiar with these.
 
 For projects with multiple data scientists where the ultimate aim is production, the gitflow workflow is probably best.  
 
-# Definition of Done for Data Science
+## Definition of Done for Data Science
 
 
 ### Workflow
@@ -195,7 +194,7 @@ Data should be randomly sampled at various points in the workflow. Any transform
 
 Favor disposable hardware and persistent data paradigms. A small community of data scientists should be responsible for maintaining  DevOps best practices like connecting containers to git, how to orchestrate multi-container flows, and managing how EMR workflows are developed and deployed.
 
-### Languages
+## Languages
 
 - R
 - Python
@@ -210,7 +209,7 @@ Notebooks are a great way to start a project but are not appropriate for commerc
 
 [https://usethis.r-lib.org/articles/articles/usethis-setup.html]
 
-### Modern devops
+## Modern devops
 
 All of the modern software engineering paradigms apply to data science.
 
@@ -229,7 +228,7 @@ is particularly comprehensive. Look for easy ways to incorporate these into your
 
 A common pitfall in data science is to spend too much time on these concerns. The risk being that all your time will be spent tooling and optimizing and not innovating. Try to strike a good balance here.
 
-# Data Science Reading List
+## Data Science Reading List
 
 This is not a comprehensive list of reading material, but it's an excellent place to start for the basics.  The machine learning material generally requires multivariate calculus, probability, statistics, and linear algebra.
 
@@ -241,31 +240,29 @@ This is not a comprehensive list of reading material, but it's an excellent plac
 - Advanced Analytics with Spark, 2nd Edition by Josh Wills , Sean Owen , Sandy Ryza , Uri Laserson
 - Agile Data Science 2.0, 1st Edition by Russell Jurney
 
-## Statistics
-
-### Theory
+### Statistics Theory
 
 - Mathematical Statistics and Data Analysis 3rd Edition by John A. Rice
 - Mathematical Statistics 2nd Edition by Wiebe R. Pestman
 - Mathematical Statistics: Basic Ideas and Selected Topics 1st Edition Peter J. Bickel , Kjell A. Doksum
 
-### Applied
+### Statistics Applied
 
 - Linear Models with R by Julian J. Faraway
 - Extending the Linear Model with R: Generalized Linear, Mixed Effects and Nonparametric Regression Models by Julian J. Faraway
 - Generalized Linear Models by P. McCullagh and John A. Nelder
 
-## Machine Learning
+### Machine Learning
 
 - An Introduction to Statistical Learning: with Applications in R (Springer Texts in Statistics) by Gareth James,Daniela Witten,Trevor Hastie, Robert Tibshirani
 - (Intermediate) The Elements of Statistical Learning: Data Mining, Inference, and Prediction, Second Edition (Springer Series in Statistics) by Trevor Hastie,Robert Tibshirani, Jerome Friedman
 - Machine Learning: A Probabilistic Perspective (Adaptive Computation and Machine Learning series) by Kevin P. Murphy
-- Probability for Statistics and Machine Learning: Fundamentals and Advanced Topics (Springer Texts in Statistics) Springer Texts in Statistics DasGupta, Anirban
+- Probability for Statistics and Machine Learning: Fundamentals and Advanced Topics Springer Texts in Statistics DasGupta, Anirban
 - Probabilistic Graphical Models: Principles and Techniques (Adaptive Computation and Machine Learning series) 1st Edition by Daphne Koller  (Author), Nir Friedman
 - Deep Learning (Adaptive Computation and Machine Learning series) by Ian Goodfellow  (Author), Yoshua Bengio  (Author), Aaron Courville
 - Learning with Kernels: Support Vector Machines, Regularization, Optimization, and Beyond (Adaptive Computation and Machine Learning) by Bernhard Schlkopf (Author), Alexander J. Smola
 
-## Core Competencies
+### Core Competencies
 
 - git [https://www.csc.kth.se/utbildning/kth/kurser/DD2385/material/gitmagic.pdf]
 - SQL
@@ -274,7 +271,47 @@ This is not a comprehensive list of reading material, but it's an excellent plac
 - Python
 
 
-# General Advice & Thoughts on data science  
+## MLOps - devops applied to machine learning workflows
+
+First we describe the theoretical concerns and later in the work we'll demonstrate how these concepts are developed in practice.    
+
+### Development platform
+a collaborative platform for performing ML experiments and empowering the creation of ML models by data scientists should be considered part of the MLOps framework. This platform should enable secure access to data sources (e.g. from data engineering workflows). We want the handover from ML training to deployment to be as smooth as possible, which is more likely the case for such a platform as compared to ML models developed in different local environment.
+Model unit testing: every time we create, change, or retrain a model, we should automatically validate the integrity of the model, e.g.
+- should meet minimum performance on test set
+- should perform well on synthetic use case-specific datasets
+
+### Versioning
+it should be possible to go back in time to inspect everything relating to a given model; e.g. what data & code was used. Why? because it something breaks, we need to be able to go back in time and see why.
+Model registry: there should be an overview of deployed & decommissioned ML models, their version history, and deployment stage of each version. Why? if something breaks, we can rollback a previous archived version back into production.
+
+### Model Governance: only certain people should have access to see training related to any given model, and there should be access control for who can request/reject/approve transitions between deployment stages (e.g. dev to test to prod) in the model registry.
+
+### Deployments: deployment can be many things, but in this post I consider the case where we want to deploy a model to cloud infrastructure and expose an API, which enables other people to consume and use the model, i.e. I’m not considering cases where we want to deploy ML models into embedded systems. Efficient model deployments on appropriate infrastructure should:
+- support multiple ML frameworks + custom models
+- have well defined API spec (e.g. Swagger/OpenAPI)
+- support containerized model servers
+Monitoring: tracking performance metrics (throughput, uptime, etc.). Why? If all of the sudden a model starts returning errors, or being unexpectedly slow, we need to know before the end-user complains, so that we can fix it.
+
+### Feedback: we need to feedback information to the model on how well it is performing. Why? typically we run predictions on new samples where we do not yet know the ground truth. As we learn the truth, however, we need to inform the model, so that it can report on how well it is actually doing.
+
+### A/B testing: no matter how solid cross-validation we think we’re doing, we never know how the model will perform until it actually gets deployed. It should be easy to perform A/B experiments with live models within the MLOps framework.
+
+### Drift detection: typically the longer time a given model is deployed the worse it becomes as circumstances change compared to the time of training the model. We can try to monitor and alert on these different circumstances, or “drifts”, before they get too severe:
+- Concept drift: when the relation between input and output has changed
+- Prediction drift: changes in incoming predictions, but model still holds
+- Label drift: change in the model’s outcomes compared to training data
+- Feature drift: change in the distribution of model input data
+
+### Outlier detection: if a deployed model receives an input sample which is significantly different from anything observed during training, we can try to identify this sample as a potential outlier, and the returned prediction should be marked as such, indicating that the end-user should be careful in trusting the prediction.
+Adversarial Attack Detection: we should be warned when our models are attacked by adversarial samples (e.g. someone trying to abuse / manipulate the outcome of our algorithms).
+
+### Interpretability: the ML deployments should support endpoints returning the explanation of our prediction, e.g. through SHAP values. Why? for a lot of use cases a prediction is not enough and the end-user needs to know why a given prediction was made.
+Governance of deployments: we not only need access restrictions on who can see the data, trained models, etc, but also for who can eventually use the deployed models. These deployed models can often be just as confidential as the data they were trained on.
+
+### Data-centricity: rather than focus on model performance & improvements, it makes sense that a MLOps framework also enables an increased focus on how data quality and breadth can be improved.
+
+## General Advice & Thoughts on data science  
 
 *The highest and most beautiful things in life are not to be heard about, nor read about, nor seen but, if one will, are to be lived.* Soren Kierkegaard
 

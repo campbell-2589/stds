@@ -1,7 +1,6 @@
-# Poincare Embedding
+# Geometric Methods
 
-
-## Embeddings
+## Poincare Embedding
 
 *The Poincaré Embedding is concerned with the problem of learning hierarchical structure on the dataset. Phylogenetic tree or the tree of hypernymy are the examples of hierarchical structure dataset. The embedding space is a Poincaré ball, which is an unit ball equipped with poincaré distance. An advantage using Poincaré space compared to the Euclidean space as embedding space is that this space preserve tree-shaped structure well in relatively low dimension. This is because poincaré distance is intuitively continuous version of distance on tree-shaped dataset. We can take advantage of this property to provide efficient embeddings with comparably less dimensionality.*
 
@@ -56,7 +55,7 @@ print(paste("The mean average precision of the poincare embedding :", emb$map))
 ```
 
 
-# Multirelational
+## Multirelational
 
 https://github.com/ibalazevic/multirelational-poincare
 
