@@ -1,4 +1,4 @@
---- 
+---
 title: "Selected Topics In Data Science"
 author: "Bruce Campbell"
 date: "`r Sys.Date()`"
@@ -30,6 +30,6 @@ bibliography: [packages.bib,book.bib]
 #biblio-style: [plainnatnew.bst]
 ---
 
-# Preface 
+# Preface
 
-This is the first installment on my promise to elucidate less popular topics in statistics and machine learning. I wrote this as a way to solidify my understanding of some of the topics that are treated here. Hopefully others will find value here. 
+This is the first installment on my promise to elucidate less popular topics in statistics and machine learning. I wrote this as a way to solidify my understanding of some of the topics that are treated here. Hopefully others will find value here. Eventually the work done in advanced regression vingetts will make their way here. 
