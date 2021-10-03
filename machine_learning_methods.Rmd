@@ -1,5 +1,6 @@
 # Machine Learning Methods
 
+
 ## On Model Averaging
 
 Recall that we can break down model error into the bias an variance $bias(\hat{Y})= E[\hat{Y}-E[Y]]$
