@@ -1,6 +1,5 @@
 # Explainability Methods
 
-
 ## Sensitivity Analysis and Shapley Values
 
 Global sensitivity analysis measures the importance of input variables to a function. This is an important task in quantifying the uncertainty in which target variables can be predicted from their inputs. Sobol indices [@sobolindices] are a popular approach to this. It turns out that there's a relationship between Sobol indices and Shapley values. We explore this relationship here and demonstrate their effectiveness on some linear and non-linear models.
@@ -19,9 +18,6 @@ if(!require(sensitivity)){
     install.packages("sensitivity")
     library(sensitivity)
 }
-
-
-
 
 ```
 
